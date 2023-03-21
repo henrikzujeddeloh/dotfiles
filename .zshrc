@@ -70,7 +70,7 @@ ZSH_DISABLE_COMPFIX=true
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git z github history macos pip pyenv pylint python sublime vscode docker-compose docker systemd sudo dirhistory aliases timer zsh-autosuggestions)
+plugins=(git z github history macos pip pyenv pylint python vscode docker-compose docker systemd sudo dirhistory aliases timer zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
