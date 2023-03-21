@@ -1,7 +1,9 @@
 # dotfiles
 
 ## zsh config
-To add the zsh config to system: `ln -s $HOME/dotfiles/.zshrc $HOME/.zshrc`
+First make sure ZSH is installed: `sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
+Plugin dependancies: zsh-autosuggestions, zsh-syntax-highlighting
+Add zsh config to system: `ln -s $HOME/dotfiles/.zshrc $HOME/.zshrc`
 
 
 ## sshd config
