@@ -26,3 +26,9 @@ Add the sshd config to system: `ln -s $HOME/dotfiles/sshd_config /etc/ssh/sshd_c
 Test new config first!!! `/usr/sbin/sshd -t`
 
 Restart SSHd service: `sudo systemctl restart ssh.service`
+
+
+
+## neofetch config
+
+Add the neofetch config to user: `ln -s $HOME/dotfiles/neofetch.conf $HOME/.config/neofetch/config.conf`
