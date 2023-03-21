@@ -6,6 +6,13 @@ First make sure ZSH is installed: `sh -c "$(curl -fsSL https://raw.githubusercon
 
 Plugin dependancies: zsh-autosuggestions, zsh-syntax-highlighting
 
+### zsh-autosuggestoins
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+### zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
+
+
 Add zsh config to system: `ln -s $HOME/dotfiles/.zshrc $HOME/.zshrc`
 
 
