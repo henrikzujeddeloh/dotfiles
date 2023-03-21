@@ -1,0 +1,1 @@
+/Users/henrikzujeddeloh/.zshrc
