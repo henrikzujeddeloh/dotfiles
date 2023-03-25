@@ -44,7 +44,7 @@ DISABLE_UPDATE_PROMPT="true"
 # Loading plugins
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(git z github history macos pip pyenv pylint python vscode docker-compose docker systemd sudo dirhistory aliases timer zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git z history docker-compose docker mosh systemd sudo dirhistory aliases zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
