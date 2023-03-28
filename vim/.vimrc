@@ -49,4 +49,6 @@ Plug 'airblade/vim-gitgutter'
 
 Plug 'preservim/nerdtree'
 
+Plug 'tpope/vim-surround'
+
 call plug#end()
