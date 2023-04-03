@@ -53,4 +53,6 @@ Plug 'tpope/vim-surround'
 
 Plug 'junegunn/fzf'
 
+Plug 'cespare/vim-toml'
+
 call plug#end()
