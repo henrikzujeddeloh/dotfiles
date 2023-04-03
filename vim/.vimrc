@@ -51,4 +51,6 @@ Plug 'preservim/nerdtree'
 
 Plug 'tpope/vim-surround'
 
+Plug 'junegunn/fzf'
+
 call plug#end()
