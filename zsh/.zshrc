@@ -42,6 +42,8 @@ unset __conda_setup
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*" --glob "!node_modules/*" --glob "!vendor/*" 2> /dev/null'
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 
+export PATH=$PATH:$HOME/.local/bin
+
 alias e="exit"
 
 bindkey -s '^o' 'cd_with_fzf^M'
