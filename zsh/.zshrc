@@ -79,3 +79,15 @@ vim_with_fzf(){
 cd $HOME && vim "$(fd -t f -H | fzf)"
 }
 
+# Recursively rename images in directory to creation date
+rename_to_capture() {
+exiftool -R -d '%Y-%m-%d_%H-%M-%S%%-02.c.%%e' '-filename<CreateDate' *
+}
+
+# Move all raw files into raw subfolder
+move_raw(){
+mkdir -p RAW
+find . -name '*.RAF' -or -name '*.CR2' -exec mv '{}' ./RAW \;
+}
+
+
