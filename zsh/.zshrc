@@ -14,13 +14,12 @@ DISABLE_AUTO_UPDATE=true
 DISABLE_UPDATE_PROMPT="true"
 
 
-# Loading plugins
+### LOAD PLUGINS
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 plugins=(git z history docker-compose docker mosh systemd sudo dirhistory aliases zsh-autosuggestions zsh-syntax-highlighting fzf)
 
 source $ZSH/oh-my-zsh.sh
-
 
 
 # >>> conda initialize >>>
@@ -38,23 +37,45 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+### ENVIRONMENT VARIABLES
+
+# Defines find command that fzf uses
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*" --glob "!node_modules/*" --glob "!vendor/*" 2> /dev/null'
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 
+# makes /usr/local/bin binaries executable from anywhere
 export PATH=$PATH:$HOME/.local/bin
+
+
+
+### ALISASES
 
 alias e="exit"
 
-bindkey -s '^o' 'cd_with_fzf^M'
 
+
+
+### KEYBINDS
+
+# Bind CTRL-O to enter directory using fzf
+bindkey -s '^o' 'cd_with_fzf\n'
+
+# Bind CTRL-E to vim file using fzf
+bindkey -s '^e' 'vim_with_fzf\n'
+
+
+
+
+### FUNCTIONS
+
+# Search directory under home directory using fzf and cd into it
 cd_with_fzf() {
 cd $HOME && cd "$(fd -t d | fzf --preview="tree -L 1 {}" --bind="space:toggle-preview" --preview-window=:hidden)" && clear
 }
 
-
-bindkey -s '^v' 'vim_with_fzf^M'
-
+# Search for file under home directory using fzf and edit using vim
 vim_with_fzf(){
 cd $HOME && vim "$(fd -t f -H | fzf)"
 }
+
