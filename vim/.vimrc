@@ -37,6 +37,17 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 endif
 
 
+" KEYBINDS
+
+" find file with fzf and edit
+nnoremap 'e :FZF<cr>
+
+" find buffers
+nnoremap 'b :Buffers<cr>
+
+" toggle previous buffer
+nnoremap '' :b#<cr>
+
 
 
 " Installs plugins
@@ -52,6 +63,8 @@ Plug 'preservim/nerdtree'
 Plug 'tpope/vim-surround'
 
 Plug 'junegunn/fzf'
+
+Plug 'junegunn/fzf.vim'
 
 Plug 'cespare/vim-toml'
 
