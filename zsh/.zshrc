@@ -75,7 +75,7 @@ cd $HOME && cd "$(fd -t d | fzf --preview="tree -L 1 {}" --bind="space:toggle-pr
 }
 
 # Search for file under home directory using fzf and edit using vim
-vim_with_fzf(){
+vim_with_fzf() {
 cd $HOME && vim "$(fd -t f -H | fzf)"
 }
 
@@ -85,9 +85,12 @@ exiftool -R -d '%Y-%m-%d_%H-%M-%S%%-02.c.%%e' '-filename<CreateDate' *
 }
 
 # Move all raw files into raw subfolder
-move_raw(){
+move_raw() {
 mkdir -p RAW
-find . -name '*.RAF' -or -name '*.CR2' -exec mv '{}' ./RAW \;
+find -E . -iregex '.*\.(RAF|CR2)' -exec mv '{}' ./RAW \;
 }
 
-
+cd_photos() {
+year=`date +'%Y'`
+cd /Volumes/Photos/$year
+}
