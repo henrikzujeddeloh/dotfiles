@@ -40,7 +40,7 @@ endif
 " KEYBINDS
 
 " find file with fzf and edit
-nnoremap 'e :FZF<cr>
+nnoremap 'e :FZF ~<cr>
 
 " find buffers
 nnoremap 'b :Buffers<cr>
@@ -48,7 +48,8 @@ nnoremap 'b :Buffers<cr>
 " toggle previous buffer
 nnoremap '' :b#<cr>
 
-
+" scroll terminal
+tnoremap <Esc><Esc> <C-w>N
 
 " Installs plugins
 
