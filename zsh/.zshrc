@@ -55,7 +55,7 @@ export EDITOR=vim
 
 alias e="exit"
 
-
+alias lzd='lazydocker'
 
 
 ### KEYBINDS
