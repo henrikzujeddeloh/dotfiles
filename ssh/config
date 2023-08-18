@@ -14,21 +14,22 @@ Host cloud
     RequestTTY force
     RemoteCommand neofetch && zsh
 
-#raspberrypi with mac ssh key
-Host raspberrypi
-    HostName raspberrypi.lan
-    User pi
-    IdentityFile ~/.ssh/id_ed25519
-    RequestTTY force
-    RemoteCommand neofetch && zsh
-
 # raspberrypi with yubikey nano
-Host rpi
+Host rpi-nano
     Hostname raspberrypi.lan
     User pi
     IdentityFile ~/.ssh/id_ecdsa_sk_nano
     RequestTTY force
     RemoteCommand neofetch && zsh
+
+# raspberry pi with USB-C yubikey
+Host rpi
+    Hostname raspberrypi.lan
+    User pi
+    IdentityFile ~/.ssh/id_ecdsa_sk
+    RequestTTY force
+    RemoteCommand neofetch && zsh
+
 
 # DKFZ simulation server 
 Host v100
