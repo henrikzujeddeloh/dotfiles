@@ -51,6 +51,9 @@ export PATH=$PATH:$HOME/.local/bin
 export VISUAL=vim
 export EDITOR=vim
 
+export PING_KEY=XqvodhqCimKKe0HNSSxKCg
+
+
 ### ALISASES
 
 alias e="exit"
