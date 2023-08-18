@@ -47,7 +47,9 @@ export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 # makes /usr/local/bin binaries executable from anywhere
 export PATH=$PATH:$HOME/.local/bin
 
-
+# makes vim devault editor and viewer
+export VISUAL=vim
+export EDITOR=vim
 
 ### ALISASES
 
