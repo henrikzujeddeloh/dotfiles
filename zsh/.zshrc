@@ -58,7 +58,7 @@ export PING_KEY=XqvodhqCimKKe0HNSSxKCg
 
 alias e="exit"
 
-
+alias lzd='lazydocker'
 
 
 ### KEYBINDS
