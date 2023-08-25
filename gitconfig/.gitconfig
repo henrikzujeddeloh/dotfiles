@@ -1,0 +1,8 @@
+[user]
+	name=henrikzujeddeloh
+	email=henrik.zujeddeloh@protonmail.com
+[core]
+	ignorecase = false
+[pull]
+	rebase = false
+
