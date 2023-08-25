@@ -99,3 +99,35 @@ cd_photos() {
 year=`date +'%Y'`
 cd /Volumes/Photos/$year
 }
+
+
+diff_raw_jpg() {
+echo "RAW files without existing JPG"
+for filename in ./*; do
+	name=${filename##*/}
+	base=${name%.*}
+	if [[ -z $(find .. -name "$base.*" -not -path "../RAW*") ]]; then
+		echo $name
+	fi
+done
+}
+
+
+rm_orphan_raw() {
+echo "Remove RAW without existing JPG? "
+read reply
+echo
+
+if [[ $reply =~ ^[Yy]$ ]]
+then
+	for filename in ./*; do
+		name=${filename##*/}
+		base=${name%.*}
+		if [[ -z $(find .. -name "$base.*" -not -path "../RAW*") ]]; then
+			echo "removing $name"
+			rm $name
+		fi
+done
+
+fi
+}
