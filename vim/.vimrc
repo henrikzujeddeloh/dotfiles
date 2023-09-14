@@ -20,12 +20,19 @@ set scrolloff=4
 " disable compatibility with vi
 set nocompatible
 
-" enable auto copmletion menu after pressing TAP
+" enable auto copmletion menu after pressing TAB
 set wildmenu
 set wildmode=list:longest
 
+" enable mouse control
+set mouse=a
 
+" show hidden files in NERDTree by default
+let NERDTreeShowHidden=1
 
+" tabs appear as 4 spaces
+set tabstop=4
+set shiftwidth=4
 
 
 " installs vim-plug (plugin manager for vim)
@@ -39,6 +46,12 @@ endif
 
 " KEYBINDS
 
+" remap undo keybind
+nnoremap U <C-r>
+
+" toggles directory
+nnoremap 'n :NERDTreeToggle<CR>
+
 " find file with fzf and edit
 nnoremap 'e :FZF ~<cr>
 
@@ -48,8 +61,21 @@ nnoremap 'b :Buffers<cr>
 " toggle previous buffer
 nnoremap '' :b#<cr>
 
+" move to next buffer
+nnoremap 'j :bn<cr>
+
+" close buffer but not window
+nnoremap 'q :bn<bar>bd#<cr>
+
+" open terminal
+nnoremap 't :term<cr>
+
 " scroll terminal
 tnoremap <Esc><Esc> <C-w>N
+
+" navigate visual lines instead of physical lines
+noremap j gj
+noremap k gk
 
 " Installs plugins
 
@@ -68,5 +94,11 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
 Plug 'cespare/vim-toml'
+
+Plug 'ervandew/supertab'
+
+Plug 'godlygeek/tabular'
+
+Plug 'preservim/vim-markdown'
 
 call plug#end()
