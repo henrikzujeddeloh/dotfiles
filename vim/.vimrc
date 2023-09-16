@@ -34,6 +34,16 @@ let NERDTreeShowHidden=1
 set tabstop=4
 set shiftwidth=4
 
+" concealing links, italic, bold, etc
+set conceallevel=2
+
+" other highlighting
+let g:tex_conceal = ""
+let g:vim_markdown_math = 1
+let g:vim_markdown_frontmatter = 1
+
+" disable folding
+let g:vim_markdown_folding_disabled = 1
 
 " installs vim-plug (plugin manager for vim)
 
@@ -49,11 +59,18 @@ endif
 " remap undo keybind
 nnoremap U <C-r>
 
+" navigate visual lines instead of physical lines
+noremap j gj
+noremap k gk
+
 " toggles directory
 nnoremap 'n :NERDTreeToggle<CR>
 
 " find file with fzf and edit
-nnoremap 'e :FZF ~<cr>
+nnoremap 'e :Files ~<cr>
+
+" find under current directory
+nnoremap 'o :Files %:p:h<CR>
 
 " find buffers
 nnoremap 'b :Buffers<cr>
@@ -73,9 +90,6 @@ nnoremap 't :term<cr>
 " scroll terminal
 tnoremap <Esc><Esc> <C-w>N
 
-" navigate visual lines instead of physical lines
-noremap j gj
-noremap k gk
 
 " Installs plugins
 
@@ -100,5 +114,7 @@ Plug 'ervandew/supertab'
 Plug 'godlygeek/tabular'
 
 Plug 'preservim/vim-markdown'
+
+"Plug 'epwalsh/obsidian.nvim'
 
 call plug#end()
