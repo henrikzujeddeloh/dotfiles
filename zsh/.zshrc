@@ -60,6 +60,8 @@ alias e="exit"
 
 alias lzd='lazydocker'
 
+alias n='nvim'
+
 
 ### KEYBINDS
 
@@ -81,7 +83,11 @@ cd $HOME && cd "$(fd -t d | fzf --preview="tree -L 1 {}" --bind="space:toggle-pr
 
 # Search for file under home directory using fzf and edit using vim
 vim_with_fzf() {
-cd $HOME && vim "$(fd -t f -H | fzf)"
+cd $HOME && n "$(fd -t f -H | fzf)"
+}
+
+convert_post() {
+pandoc --standalone --template ../template.html post.md -o post.html
 }
 
 # Recursively rename images in directory to creation date
@@ -95,12 +101,13 @@ mkdir -p RAW
 find -E . -iregex '.*\.(RAF|CR2)' -exec mv '{}' ./RAW \;
 }
 
+# move to particular year in NAS photo storage
 cd_photos() {
 year=`date +'%Y'`
 cd /Volumes/Photos/$year
 }
 
-
+# find RAW images without matching JPG
 diff_raw_jpg() {
 echo "RAW files without existing JPG"
 for filename in ./*; do
@@ -112,7 +119,7 @@ for filename in ./*; do
 done
 }
 
-
+# remove RAW images without existing corresponding JPG
 rm_orphan_raw() {
 echo "Remove RAW without existing JPG? "
 read reply
