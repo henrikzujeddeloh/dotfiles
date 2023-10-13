@@ -24,17 +24,17 @@ source $ZSH/oh-my-zsh.sh
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/opt/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
+# __conda_setup="$('/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+#         . "/opt/anaconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/opt/anaconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
 # <<< conda initialize <<<
 
 
@@ -46,6 +46,7 @@ export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 
 # makes /usr/local/bin binaries executable from anywhere
 export PATH=$PATH:$HOME/.local/bin
+export PATH="/usr/local/sbin:$PATH"
 
 # makes vim devault editor and viewer
 export VISUAL=vim
@@ -62,6 +63,7 @@ alias lzd='lazydocker'
 
 alias n='nvim'
 
+alias python=/usr/bin/python3
 
 ### KEYBINDS
 
