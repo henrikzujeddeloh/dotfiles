@@ -22,22 +22,6 @@ plugins=(git z history docker-compose docker mosh systemd sudo dirhistory aliase
 source $ZSH/oh-my-zsh.sh
 
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-# __conda_setup="$('/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-# if [ $? -eq 0 ]; then
-#     eval "$__conda_setup"
-# else
-#     if [ -f "/opt/anaconda3/etc/profile.d/conda.sh" ]; then
-#         . "/opt/anaconda3/etc/profile.d/conda.sh"
-#     else
-#         export PATH="/opt/anaconda3/bin:$PATH"
-#     fi
-# fi
-# unset __conda_setup
-# <<< conda initialize <<<
-
-
 ### ENVIRONMENT VARIABLES
 
 # Defines find command that fzf uses
@@ -46,13 +30,11 @@ export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 
 # makes /usr/local/bin binaries executable from anywhere
 export PATH=$PATH:$HOME/.local/bin
-export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/bin:$PATH"
 
 # makes vim devault editor and viewer
-export VISUAL=vim
-export EDITOR=vim
-
-export PING_KEY=XqvodhqCimKKe0HNSSxKCg
+export VISUAL=nvim
+export EDITOR=nvim
 
 
 ### ALISASES
@@ -63,7 +45,6 @@ alias lzd='lazydocker'
 
 alias n='nvim'
 
-alias python=/usr/bin/python3
 
 ### KEYBINDS
 
@@ -74,20 +55,19 @@ bindkey -s '^o' 'cd_with_fzf\n'
 bindkey -s '^e' 'vim_with_fzf\n'
 
 
-
-
 ### FUNCTIONS
 
 # Search directory under home directory using fzf and cd into it
 cd_with_fzf() {
-cd $HOME && cd "$(fd -t d | fzf --preview="tree -L 1 {}" --bind="space:toggle-preview" --preview-window=:hidden)" && clear
+cd $HOME && cd "$(fd --type directory --hidden --exclude .git| fzf)" && clear
 }
 
 # Search for file under home directory using fzf and edit using vim
 vim_with_fzf() {
-cd $HOME && n "$(fd -t f -H | fzf)"
+cd $HOME && nvim "$(fd --type file --hidden | fzf)"
 }
 
+# Convert markdown to html for blog
 convert_post() {
 pandoc --standalone --template ../template.html post.md -o post.html
 }

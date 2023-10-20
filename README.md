@@ -1,25 +1,13 @@
 # dotfiles
 
-## zsh config
+**PULL THIS REPO INTO HOME DIRECTORY!** 
 
-First make sure ZSH is installed: `sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
+## Usage
 
-Install plugins by running `zsh-plugins-install.sh` in [install](https://github.com/henrikzujeddeloh/install) repo.
+Run install script to install the respective configuration.
+The scripts delete the current configuration and create a new symbolic link to the configuration in this repository.
 
-To apply the config file run `./zsh-config.sh`.
-
-This script deletes the current `~/.zshrc` file and creates a link to the one stored here.
-
-
-
-## vim config
-
-To apply the config file run `./vim-config.sh`.
-
-This script deletes the current `~/.vimrc` file and creates a link to the one stored here.
-
-
-## sshd config
+### sshd config
 
 Backup current sshd config file!
 
@@ -28,11 +16,3 @@ Add the sshd config to system: `ln -s $HOME/dotfiles/sshd_config /etc/ssh/sshd_c
 Test new config first! `/usr/sbin/sshd -t`
 
 Restart SSHd service: `sudo systemctl restart ssh.service`
-
-
-
-## neofetch config
-
-To apply the config file run `./neofetch-conf.sh`.
-
-This script deletes the current `config.conf` file and creates a link to the one stored here.
