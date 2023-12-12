@@ -120,3 +120,9 @@ done
 
 fi
 }
+
+
+
+### Display hostname on login
+hostname=$(hostname)
+figurine -f "ANSI Regular.flf" $hostname

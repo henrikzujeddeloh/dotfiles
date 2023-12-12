@@ -4,7 +4,6 @@ Host cloud-nano
     User henrik
     IdentityFile ~/.ssh/id_ecdsa_sk_nano
     RequestTTY force
-    RemoteCommand neofetch && zsh
 
 # Cloud server with USB-C yubikey
 Host cloud
@@ -12,7 +11,6 @@ Host cloud
     User henrik
     IdentityFile ~/.ssh/id_ecdsa_sk
     RequestTTY force
-    RemoteCommand neofetch && zsh
 
 # raspberrypi with yubikey nano
 Host rpi-nano
@@ -20,7 +18,6 @@ Host rpi-nano
     User pi
     IdentityFile ~/.ssh/id_ecdsa_sk_nano
     RequestTTY force
-    RemoteCommand neofetch && zsh
 
 # raspberry pi with USB-C yubikey
 Host rpi
@@ -28,7 +25,6 @@ Host rpi
     User pi
     IdentityFile ~/.ssh/id_ecdsa_sk
     RequestTTY force
-    RemoteCommand neofetch && zsh
 
 
 # DKFZ simulation server 
