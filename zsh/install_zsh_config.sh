@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# install required zsh plugins
 /bin/bash install_zsh_plugins.sh
 
 rm $HOME/.zshrc

@@ -28,7 +28,7 @@ source $ZSH/oh-my-zsh.sh
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*" --glob "!node_modules/*" --glob "!vendor/*" 2> /dev/null'
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 
-# makes /usr/local/bin binaries executable from anywhere
+# add some paths to PATH
 export PATH=$PATH:$HOME/.local/bin
 export PATH="/usr/local/bin:$PATH"
 
