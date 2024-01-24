@@ -12,3 +12,9 @@ Host proton
     IdentityFile ~/.ssh/id_ecdsa_sk_nano
     RequestTTY force
 
+Host neutron
+    Hostname neutron.lan
+    User henrik
+    IdentityFile ~/.ssh/id_ecdsa_sk
+    IdentityFile ~/.ssh/id_ecdsa_sk_nano
+    RequestTTY force
