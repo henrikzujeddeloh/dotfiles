@@ -51,74 +51,66 @@ alias n='nvim'
 # Bind CTRL-O to enter directory using fzf
 bindkey -s '^o' 'cd_with_fzf\n'
 
-# Bind CTRL-E to vim file using fzf
-bindkey -s '^e' 'vim_with_fzf\n'
-
 
 ### FUNCTIONS
 
 # Search directory under home directory using fzf and cd into it
 cd_with_fzf() {
-cd $HOME && cd "$(fd --type directory --hidden --exclude .git| fzf)" && clear
-}
-
-# Search for file under home directory using fzf and edit using vim
-vim_with_fzf() {
-cd $HOME && nvim "$(fd --type file --hidden | fzf)"
+    cd $HOME && cd "$(fd --type directory --hidden --exclude .git | fzf)" && clear
 }
 
 # Convert markdown to html for blog
 convert_post() {
-pandoc --standalone --template ../template.html post.md -o post.html
+    pandoc --standalone --template ../template.html post.md -o post.html
 }
 
 # Recursively rename images in directory to creation date
 rename_to_capture() {
-exiftool -R -d '%Y-%m-%d_%H-%M-%S%%-02.c.%%e' '-filename<CreateDate' *
+    exiftool -R -d '%Y-%m-%d_%H-%M-%S%%-02.c.%%e' '-filename<CreateDate' *
 }
 
 # Move all raw files into raw subfolder
 move_raw() {
-mkdir -p RAW
-find -E . -iregex '.*\.(RAF|CR2)' -exec mv '{}' ./RAW \;
+    mkdir -p RAW
+    find -E . -iregex '.*\.(RAF|CR2)' -exec mv '{}' ./RAW \;
 }
 
 # move to particular year in NAS photo storage
 cd_photos() {
-year=`date +'%Y'`
-cd /Volumes/Photos/$year
+    year=`date +'%Y'`
+    cd /Volumes/Photos/$year
 }
 
 # find RAW images without matching JPG
 diff_raw_jpg() {
-echo "RAW files without existing JPG"
-for filename in ./*; do
-	name=${filename##*/}
-	base=${name%.*}
-	if [[ -z $(find .. -name "$base.*" -not -path "../RAW*") ]]; then
-		echo $name
-	fi
-done
+    echo "RAW files without existing JPG"
+    for filename in ./*; do
+        name=${filename##*/}
+        base=${name%.*}
+        if [[ -z $(find .. -name "$base.*" -not -path "../RAW*") ]]; then
+            echo $name
+        fi
+    done
 }
 
 # remove RAW images without existing corresponding JPG
 rm_orphan_raw() {
-echo "Remove RAW without existing JPG? "
-read reply
-echo
+    echo "Remove RAW without existing JPG? "
+    read reply
+    echo
 
-if [[ $reply =~ ^[Yy]$ ]]
-then
-	for filename in ./*; do
-		name=${filename##*/}
-		base=${name%.*}
-		if [[ -z $(find .. -name "$base.*" -not -path "../RAW*") ]]; then
-			echo "removing $name"
-			rm $name
-		fi
-done
+    if [[ $reply =~ ^[Yy]$ ]]
+    then
+        for filename in ./*; do
+            name=${filename##*/}
+            base=${name%.*}
+            if [[ -z $(find .. -name "$base.*" -not -path "../RAW*") ]]; then
+                echo "removing $name"
+                rm $name
+            fi
+        done
 
-fi
+    fi
 }
 
 
