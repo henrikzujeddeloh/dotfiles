@@ -13,6 +13,8 @@ DISABLE_AUTO_UPDATE=true
 # automatically update without prompting.
 DISABLE_UPDATE_PROMPT="true"
 
+# TAB suggest hidden files/directories
+setopt globdots
 
 ### LOAD PLUGINS
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
@@ -45,7 +47,14 @@ alias lzd='lazydocker'
 
 alias n='nvim'
 
-alias fd='fdfind'
+# define "fd" command based on operating system
+if [[ `uname` == "Linux" ]]; then
+    alias fd='fdfind'
+elif [[ `uname` == "Darwin" ]]; then
+    alias fd="fd"
+else
+    echo "Unknown OS!"
+fi
 
 
 ### KEYBINDS
