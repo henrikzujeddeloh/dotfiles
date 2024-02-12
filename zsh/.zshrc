@@ -45,6 +45,8 @@ alias lzd='lazydocker'
 
 alias n='nvim'
 
+alias fd='fdfind'
+
 
 ### KEYBINDS
 

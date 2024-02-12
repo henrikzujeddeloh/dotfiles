@@ -1,5 +1,5 @@
 #!/bin/bash
 
-rm $HOME/.gitconfig
+rm -f $HOME/.gitconfig
 
 ln -s $HOME/dotfiles/gitconfig/.gitconfig $HOME/.gitconfig
