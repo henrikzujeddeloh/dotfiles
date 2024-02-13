@@ -1,6 +1,11 @@
 # open terminal
 alt - t : open -na /Applications/iTerm.app/
 alt - b : open -na /Applications/Firefox.app/
+alt - c : open -a /System/Applications/Calendar.app/
+alt - m : open -a /System/Applications/Mail.app/
+
+# run shortcut
+hyper - t : shortcuts run "Toggle Focus"
 
 # change focus
 alt - j : yabai -m window --focus south

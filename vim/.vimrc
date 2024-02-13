@@ -115,6 +115,4 @@ Plug 'godlygeek/tabular'
 
 Plug 'preservim/vim-markdown'
 
-"Plug 'epwalsh/obsidian.nvim'
-
 call plug#end()
