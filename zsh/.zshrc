@@ -27,7 +27,14 @@ source $ZSH/oh-my-zsh.sh
 ### ENVIRONMENT VARIABLES
 
 # Defines find command that fzf uses
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*" --glob "!node_modules/*" --glob "!vendor/*" 2> /dev/null'
+# INSTALL fd-find FIRST!
+if [[ `uname` == "Linux" ]]; then
+    export FZF_DEFAULT_COMMAND='fdfind --hidden --type f'
+elif [[ `uname` == "Darwin" ]]; then
+    export FZF_DEFAULT_COMMAND='fd --hidden --type f'
+else
+    echo "Unknown OS!"
+fi
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 
 # add some paths to PATH
@@ -48,6 +55,7 @@ alias lzd='lazydocker'
 alias n='nvim'
 
 # define "fd" command based on operating system
+# INSTALL fd-find FIRST!
 if [[ `uname` == "Linux" ]]; then
     alias fd='fdfind'
 elif [[ `uname` == "Darwin" ]]; then
