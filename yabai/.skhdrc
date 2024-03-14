@@ -1,17 +1,17 @@
 # open terminal
-alt - t : open -na /Applications/iTerm.app/
-alt - b : open -na /Applications/Firefox.app/
-alt - c : open -a /System/Applications/Calendar.app/
-alt - m : open -a /System/Applications/Mail.app/
+lalt - t : open -na /Applications/iTerm.app/
+lalt - b : open -na /Applications/Firefox.app/
+lalt - c : open -a /System/Applications/Calendar.app/
+lalt - m : open -a /System/Applications/Mail.app/
 
 # run shortcut
 hyper - t : shortcuts run "Toggle Focus"
 
 # change focus
-alt - j : yabai -m window --focus south
-alt - k : yabai -m window --focus north
-alt - h : yabai -m window --focus west
-alt - l : yabai -m window --focus east
+lalt - j : yabai -m window --focus south
+lalt - k : yabai -m window --focus north
+lalt - h : yabai -m window --focus west
+lalt - l : yabai -m window --focus east
 
 # maximize window
 alt - f : yabai -m window --toggle zoom-fullscreen
@@ -31,9 +31,12 @@ ctrl + alt - l : yabai -m window --warp east
 # toggle split
 alt - space : yabai -m window --toggle split
 
+# toggle floating
+shift + alt - space : yabai -m window --toggle float
+
 # create and destroy space
-alt - n : yabai -m space --create
-alt - d : yabai -m space --destroy
+lalt - n : yabai -m space --create
+lalt - d : yabai -m space --destroy
 
 # move spaces
 alt - 1 : yabai -m space --focus 1
