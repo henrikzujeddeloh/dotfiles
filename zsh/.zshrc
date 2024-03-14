@@ -4,7 +4,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # set ZSH theme
 ZSH_THEME="robbyrussell"
 
-# disables compatability fix promt (relevant for macOS)
+# disables compatibility fix prompt (relevant for macOS)
 ZSH_DISABLE_COMPFIX=true
 
 # disable bi-weekly auto-update checks.
@@ -19,7 +19,7 @@ setopt globdots
 ### LOAD PLUGINS
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(git z history docker-compose docker mosh systemd sudo dirhistory aliases zsh-autosuggestions zsh-syntax-highlighting fzf)
+plugins=(git z history docker-compose docker sudo dirhistory aliases zsh-autosuggestions zsh-syntax-highlighting fzf)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -41,12 +41,12 @@ export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 export PATH=$PATH:$HOME/.local/bin
 export PATH="/usr/local/bin:$PATH"
 
-# makes vim devault editor and viewer
+# makes vim default editor and viewer
 export VISUAL=nvim
 export EDITOR=nvim
 
 
-### ALISASES
+### ALIASES
 
 alias e="exit"
 
@@ -55,7 +55,7 @@ alias lzd='lazydocker'
 alias n='nvim'
 
 # define "fd" command based on operating system
-# INSTALL fd-find FIRST!
+# INSTALL 'fd-find' FIRST!
 if [[ `uname` == "Linux" ]]; then
     alias fd='fdfind'
 elif [[ `uname` == "Darwin" ]]; then
