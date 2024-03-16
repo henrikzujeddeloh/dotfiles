@@ -1,0 +1,1 @@
+cd $HOME && cd "$(fd --type directory --hidden --exclude .git | fzf)" && clear

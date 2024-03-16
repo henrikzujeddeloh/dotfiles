@@ -1,0 +1,8 @@
+echo "RAW files without existing JPG"
+for filename in ./*; do
+    name=${filename##*/}
+    base=${name%.*}
+    if [[ -z $(find .. -name "$base.*" -not -path "../RAW*") ]]; then
+        echo $name
+    fi
+done

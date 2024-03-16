@@ -24,8 +24,7 @@ plugins=(git z history docker-compose docker sudo dirhistory aliases zsh-autosug
 source $ZSH/oh-my-zsh.sh
 
 
-### ENVIRONMENT VARIABLES
-
+### custom environment variables
 # Defines find command that fzf uses
 # INSTALL fd-find FIRST!
 if [[ `uname` == "Linux" ]]; then
@@ -45,94 +44,18 @@ export PATH="/usr/local/bin:$PATH"
 export VISUAL=nvim
 export EDITOR=nvim
 
-
-### ALIASES
-
-alias e="exit"
-
-alias lzd='lazydocker'
-
-alias n='nvim'
-
-# define "fd" command based on operating system
-# INSTALL 'fd-find' FIRST!
-if [[ `uname` == "Linux" ]]; then
-    alias fd='fdfind'
-elif [[ `uname` == "Darwin" ]]; then
-    alias fd="fd"
-else
-    echo "Unknown OS!"
-fi
-
-
-### KEYBINDS
-
+### custom keybinds
 # Bind CTRL-O to enter directory using fzf
 bindkey -s '^o' 'cd_with_fzf\n'
 
+### custom aliases
+. $HOME/dotfiles/zsh/aliases.zsh
 
-### FUNCTIONS
-
-# Search directory under home directory using fzf and cd into it
-cd_with_fzf() {
-    cd $HOME && cd "$(fd --type directory --hidden --exclude .git | fzf)" && clear
-}
-
-# Convert markdown to html for blog
-convert_post() {
-    pandoc --standalone --template ../template.html post.md -o post.html
-}
-
-# Recursively rename images in directory to creation date
-rename_to_capture() {
-    exiftool -R -d '%Y-%m-%d_%H-%M-%S%%-02.c.%%e' '-filename<CreateDate' *
-}
-
-# Move all raw files into raw subfolder
-move_raw() {
-    mkdir -p RAW
-    find -E . -iregex '.*\.(RAF|CR2)' -exec mv '{}' ./RAW \;
-}
-
-# move to particular year in NAS photo storage
-cd_photos() {
-    year=`date +'%Y'`
-    cd /Volumes/Photos/$year
-}
-
-# find RAW images without matching JPG
-diff_raw_jpg() {
-    echo "RAW files without existing JPG"
-    for filename in ./*; do
-        name=${filename##*/}
-        base=${name%.*}
-        if [[ -z $(find .. -name "$base.*" -not -path "../RAW*") ]]; then
-            echo $name
-        fi
-    done
-}
-
-# remove RAW images without existing corresponding JPG
-rm_orphan_raw() {
-    echo "Remove RAW without existing JPG? "
-    read reply
-    echo
-
-    if [[ $reply =~ ^[Yy]$ ]]
-    then
-        for filename in ./*; do
-            name=${filename##*/}
-            base=${name%.*}
-            if [[ -z $(find .. -name "$base.*" -not -path "../RAW*") ]]; then
-                echo "removing $name"
-                rm $name
-            fi
-        done
-
-    fi
-}
-
-
+### custom functions
+fpath=($HOME/dotfiles/zsh/functions "${fpath[@]}")
+for file in $HOME/dotfiles/zsh/functions/*; do
+    autoload $file;
+done
 
 ### Display hostname on login
 hostname=$(hostname)
