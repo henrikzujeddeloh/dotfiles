@@ -1,5 +1,5 @@
 # open terminal
-lalt - t : open -na /Applications/iTerm.app/
+lalt - t : open -na /Applications/Alacritty.app/
 lalt - b : open -na /Applications/Firefox.app/
 lalt - c : open -a /System/Applications/Calendar.app/
 lalt - m : open -a /System/Applications/Mail.app/

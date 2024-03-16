@@ -1,9 +1,52 @@
+[env]
+TERM = "xterm-256color"
+
 [window]
 
 [font]
-size = 12.0
-normal      = { family = "RobotoMono Nerd Font", style = "Regular" }
-bold        = { family = "RobotoMono Nerd Font", style = "Bold" }
-italic      = { family = "RobotoMono Nerd Font", style = "Italic" }
-bold_italic = { family = "RobotoMono Nerd Font", style = "Bold Italic" }
+size = 14.0
+normal      = { family = "DroidSansM Nerd Font", style = "Regular" }
+bold        = { family = "DroidSansM Nerd Font", style = "Bold" }
+italic      = { family = "DroidSansM Nerd Font", style = "Italic" }
+bold_italic = { family = "DroidSansM Nerd Font", style = "Bold Italic" }
 
+
+
+# Colors (Kanagawa Wave)
+# Source https//github.com/rebelot/kanagawa.nvim
+
+[colors.primary]
+background = '#1f1f28'
+foreground = '#dcd7ba'
+
+[colors.normal]
+black   = '#090618'
+red     = '#c34043'
+green   = '#76946a'
+yellow  = '#c0a36e'
+blue    = '#7e9cd8'
+magenta = '#957fb8'
+cyan    = '#6a9589'
+white   = '#c8c093'
+
+[colors.bright]
+black   = '#727169'
+red     = '#e82424'
+green   = '#98bb6c'
+yellow  = '#e6c384'
+blue    = '#7fb4ca'
+magenta = '#938aa9'
+cyan    = '#7aa89f'
+white   = '#dcd7ba'
+
+[colors.selection]
+background = '#2d4f67'
+foreground = '#c8c093'
+
+[[colors.indexed_colors]]
+index = 16
+color = '#ffa066'
+
+[[colors.indexed_colors]]
+index = 17
+color = '#ff5d62'

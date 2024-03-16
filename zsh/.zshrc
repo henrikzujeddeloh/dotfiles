@@ -19,7 +19,7 @@ setopt globdots
 ### LOAD PLUGINS
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(git z history docker-compose docker sudo dirhistory aliases zsh-autosuggestions zsh-syntax-highlighting fzf)
+plugins=(git sudo dirhistory aliases zsh-autosuggestions zsh-syntax-highlighting fzf)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -45,7 +45,6 @@ export VISUAL=nvim
 export EDITOR=nvim
 
 ### custom keybinds
-# Bind CTRL-O to enter directory using fzf
 bindkey -s '^o' 'cd_with_fzf\n'
 
 ### custom aliases

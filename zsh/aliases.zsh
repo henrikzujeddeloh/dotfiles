@@ -1,7 +1,6 @@
 alias e="exit"
 alias lzd='lazydocker'
 alias n='nvim'
-alias testies='echo "test"'
 # define "fd" command based on operating system
 # INSTALL 'fd-find' FIRST!
 if [[ `uname` == "Linux" ]]; then
@@ -11,3 +10,14 @@ elif [[ `uname` == "Darwin" ]]; then
 else
     echo "Unknown OS!"
 fi
+
+# docker aliases
+alias dcud='docker compose up -d'
+alias dcub='docker compose up --build'
+alias dcubd='docker compose up --build -d'
+alias dcp='docker compose --pull'
+alias dps='docker ps'
+alias dst='docker stats'
+
+# tmux aliases
+alias ta='tmux attach'
