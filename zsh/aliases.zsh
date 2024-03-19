@@ -1,4 +1,5 @@
 alias e="exit"
+alias c="clear"
 alias lzd='lazydocker'
 alias n='nvim'
 

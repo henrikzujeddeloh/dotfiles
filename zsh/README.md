@@ -20,7 +20,7 @@ The following plugins are installed and enabled automatically with the `install_
 - zsh-syntax-highlighting
 
 ## Keybinds
-These are some personal keybinds alongside default zsh and fzf keybinds:
+These are some personal keybinds alongside the default zsh and fzf keybinds:
 - `ctrl` + `w`: move forward one word
 - `ctrl` + `b`: move backward one word
 - `ctrl` + `l`: move forward one character
