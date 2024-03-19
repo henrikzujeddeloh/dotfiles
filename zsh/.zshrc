@@ -26,7 +26,6 @@ source $ZSH/oh-my-zsh.sh
 
 ### custom environment variables
 # Defines find command that fzf uses
-# INSTALL fd-find FIRST!
 if [[ `uname` == "Linux" ]]; then
     export FZF_DEFAULT_COMMAND='fdfind --hidden --type f'
 elif [[ `uname` == "Darwin" ]]; then
@@ -45,9 +44,12 @@ export VISUAL=nvim
 export EDITOR=nvim
 
 ### custom keybinds
-bindkey -s '^o' 'cd_with_fzf^M'
+bindkey "^b" backward-word
+bindkey "^w" forward-word
+bindkey "^h" backward-char
+bindkey "^l" forward-char
 bindkey '^j' autosuggest-accept
-bindkey '^\' zsh_gh_copilot_suggest
+bindkey -s '^o' 'cd_with_fzf^M'
 
 ### custom aliases
 . $HOME/dotfiles/zsh/aliases.zsh
