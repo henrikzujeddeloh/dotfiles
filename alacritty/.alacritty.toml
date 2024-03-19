@@ -14,7 +14,6 @@ bold_italic = { family = "DroidSansM Nerd Font", style = "Bold Italic" }
 
 # Colors (Kanagawa Wave)
 # Source https//github.com/rebelot/kanagawa.nvim
-
 [colors.primary]
 background = '#1f1f28'
 foreground = '#dcd7ba'

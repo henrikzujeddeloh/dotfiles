@@ -46,6 +46,8 @@ export EDITOR=nvim
 
 ### custom keybinds
 bindkey -s '^o' 'cd_with_fzf\n'
+bindkey '^j' autosuggest-accept
+bindkey '^\' zsh_gh_copilot_suggest
 
 ### custom aliases
 . $HOME/dotfiles/zsh/aliases.zsh

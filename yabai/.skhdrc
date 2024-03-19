@@ -4,9 +4,6 @@ lalt - b : open -na /Applications/Firefox.app/
 lalt - c : open -a /System/Applications/Calendar.app/
 lalt - m : open -a /System/Applications/Mail.app/
 
-# run shortcut
-hyper - t : shortcuts run "Toggle Focus"
-
 # change focus
 lalt - j : yabai -m window --focus south
 lalt - k : yabai -m window --focus north
@@ -14,39 +11,39 @@ lalt - h : yabai -m window --focus west
 lalt - l : yabai -m window --focus east
 
 # maximize window
-alt - f : yabai -m window --toggle zoom-fullscreen
+lalt - f : yabai -m window --toggle zoom-fullscreen
 
 # swap windows
-shift + alt - j : yabai -m window --swap south
-shift + alt - k : yabai -m window --swap north
-shift + alt - h : yabai -m window --swap west
-shift + alt - l : yabai -m window --swap east
+shift + lalt - j : yabai -m window --swap south
+shift + lalt - k : yabai -m window --swap north
+shift + lalt - h : yabai -m window --swap west
+shift + lalt - l : yabai -m window --swap east
 
 # move window and split
-ctrl + alt - j : yabai -m window --warp south
-ctrl + alt - k : yabai -m window --warp north
-ctrl + alt - h : yabai -m window --warp west
-ctrl + alt - l : yabai -m window --warp east
+ctrl + lalt - j : yabai -m window --warp south
+ctrl + lalt - k : yabai -m window --warp north
+ctrl + lalt - h : yabai -m window --warp west
+ctrl + lalt - l : yabai -m window --warp east
 
 # toggle split
-alt - space : yabai -m window --toggle split
+lalt - space : yabai -m window --toggle split
 
 # toggle floating
-shift + alt - space : yabai -m window --toggle float
+shift + lalt - space : yabai -m window --toggle float
 
 # create and destroy space
 lalt - n : yabai -m space --create
 lalt - d : yabai -m space --destroy
 
 # move spaces
-alt - 1 : yabai -m space --focus 1
-alt - 2 : yabai -m space --focus 2
-alt - 3 : yabai -m space --focus 3
-alt - 4 : yabai -m space --focus 4
+lalt - 1 : yabai -m space --focus 1
+lalt - 2 : yabai -m space --focus 2
+lalt - 3 : yabai -m space --focus 3
+lalt - 4 : yabai -m space --focus 4
 
 # move window to space
-ctrl + alt - 1 : yabai -m window --space 1; yabai -m space --focus 1
-ctrl + alt - 2 : yabai -m window --space 2; yabai -m space --focus 2
-ctrl + alt - 3 : yabai -m window --space 3; yabai -m space --focus 3
-ctrl + alt - 4 : yabai -m window --space 4; yabai -m space --focus 4
+ctrl + lalt - 1 : yabai -m window --space 1; yabai -m space --focus 1
+ctrl + lalt - 2 : yabai -m window --space 2; yabai -m space --focus 2
+ctrl + lalt - 3 : yabai -m window --space 3; yabai -m space --focus 3
+ctrl + lalt - 4 : yabai -m window --space 4; yabai -m space --focus 4
 
