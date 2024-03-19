@@ -45,7 +45,7 @@ export VISUAL=nvim
 export EDITOR=nvim
 
 ### custom keybinds
-bindkey -s '^o' 'cd_with_fzf\n'
+bindkey -s '^o' 'cd_with_fzf^M'
 bindkey '^j' autosuggest-accept
 bindkey '^\' zsh_gh_copilot_suggest
 
