@@ -1,6 +1,7 @@
 # open terminal
 lalt - t : open -na /Applications/Alacritty.app/
 lalt - b : open -na /Applications/Firefox.app/
+shift + lalt - f : open /Users/henrikzujeddeloh
 lalt - c : open -a /System/Applications/Calendar.app/
 lalt - m : open -a /System/Applications/Mail.app/
 

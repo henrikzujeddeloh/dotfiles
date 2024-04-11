@@ -18,3 +18,11 @@ Host neutron
     IdentityFile ~/.ssh/id_ecdsa_sk
     IdentityFile ~/.ssh/id_ecdsa_sk_nano
     RequestTTY force
+
+Host backup
+    Hostname unraidweinheim.lan
+    Port 2222
+    User borg
+    IdentityFile ~/.ssh/id_ed25519
+    RequestTTY force
+
