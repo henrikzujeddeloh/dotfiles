@@ -1,0 +1,5 @@
+TODAY=$(date +%Y-%m-%d)
+FOLDER="$HOME/Cloud/Journal"
+FILE="${FOLDER}/${TODAY}.txt"
+
+nvim "${FILE}"
