@@ -1,4 +1,0 @@
-input_prompt=$1
-journal_path=$2
-
-cat ${journal_path} | OLLAMA_HOST=neutron.lan:11434 ollama run MAX_CONTEXT ${input_prompt}
