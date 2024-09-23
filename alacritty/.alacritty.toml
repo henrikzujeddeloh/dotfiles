@@ -5,10 +5,22 @@ TERM = "xterm-256color"
 
 [font]
 size = 14.0
-normal      = { family = "DroidSansM Nerd Font", style = "Regular" }
-bold        = { family = "DroidSansM Nerd Font", style = "Bold" }
-italic      = { family = "DroidSansM Nerd Font", style = "Italic" }
-bold_italic = { family = "DroidSansM Nerd Font", style = "Bold Italic" }
+
+[font.normal]
+family = "RobotoMono Nerd Font"
+style = "Regular"
+
+[font.bold]
+family = "RobotoMono Nerd Font"
+style = "Bold"
+
+[font.italic]
+family = "RobotoMono Nerd Font"
+style = "Italic"
+
+[font.bold_italic]
+family = "RobotoMono Nerd Font"
+style = "Bold Italic"
 
 # Colors scheme (Kanagawa Wave)
 # Source https//github.com/rebelot/kanagawa.nvim
