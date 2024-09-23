@@ -1,0 +1,68 @@
+# Use a temporary file to store dates and sizes
+temp_dates=$(mktemp)
+temp_sizes=$(mktemp)
+
+# Detect the operating system
+os_type=$(uname)
+
+# Function to get file size based on the operating system
+get_file_size() {
+    if [[ "$os_type" == "Darwin" ]]; then
+        # macOS: Use `stat -f %z`
+        stat -f %z "$1"
+    else
+        # Linux: Use `stat -c %s`
+        stat -c %s "$1"
+    fi
+}
+
+# Function to categorize file sizes
+categorize_size() {
+    size_kb=$(($1 / 1024)) # Convert size to KB
+
+    if [ "$size_kb" -le 1 ]; then
+        echo "0-1KB"
+    elif [ "$size_kb" -le 2 ]; then
+        echo "1-2KB"
+    elif [ "$size_kb" -le 3 ]; then
+        echo "2KB-3KB"
+    elif [ "$size_kb" -le 4 ]; then
+        echo "3KB-4KB"
+    elif [ "$size_kb" -le 5 ]; then
+        echo "4KB-5KB"
+    elif [ "$size_kb" -le 10 ]; then
+        echo "5KB-10KB"
+    else
+        echo "10KB+"
+    fi
+}
+
+# Scan the current directory recursively and get modification times and file sizes
+find . -type f -name "*.md" | while read file; do
+    # Extract modification date (formatted as Year-Month, e.g., 2023-09)
+    mod_date=$(date -r "$file" +"%Y-%m")
+    
+    # Save each date to the temp file
+    echo "$mod_date" >> "$temp_dates"
+
+    # Get file size in bytes using the correct `stat` function based on OS
+    file_size=$(get_file_size "$file")
+    
+    # Categorize the size and save to the temp file
+    categorize_size "$file_size" >> "$temp_sizes"
+done
+
+# Print modification date histogram
+echo "Modification Date Histogram:"
+echo "----------------------------"
+sort "$temp_dates" | uniq -c
+echo ""
+
+# Print file size histogram
+echo "File Size Histogram:"
+echo "---------------------"
+sort "$temp_sizes" | uniq -c
+echo ""
+
+# Clean up temporary files
+rm "$temp_dates" "$temp_sizes"
