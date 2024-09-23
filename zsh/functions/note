@@ -1,0 +1,12 @@
+echo -n "Enter the note name: "
+read note_name
+
+formatted_name=$(echo "$note_name" | tr ' ' '-')
+
+notes_folder="$HOME/Cloud/Second Brain/0_inbox"
+
+note_path="${notes_folder}/${formatted_name}.md"
+
+echo "# $note_name" > "$note_path"
+
+nvim "$note_path"

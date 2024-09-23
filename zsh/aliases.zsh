@@ -1,6 +1,6 @@
 alias e="exit"
 alias c="clear"
-alias n='nvim'
+alias n='nvim .'
 
 # define "fd" command based on operating system
 if [[ `uname` == "Linux" ]]; then
