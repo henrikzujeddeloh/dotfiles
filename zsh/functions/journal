@@ -1,5 +1,5 @@
 TODAY=$(date +%Y-%m-%d)
-FOLDER="$HOME/Cloud/Journal"
+FOLDER="$HOME/Cloud/Second-Brain/journal"
 FILE="${FOLDER}/${TODAY}.md"
 
 nvim "${FILE}"
