@@ -25,4 +25,5 @@ alias dps='docker ps'
 # tmux aliases
 alias ta='tmux attach'
 alias td='tmux detach'
+alias tn='tmux new'
 alias tl='tmux ls'
