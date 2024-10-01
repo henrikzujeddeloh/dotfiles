@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Use a temporary file to store dates and sizes
 temp_dates=$(mktemp)
 temp_sizes=$(mktemp)

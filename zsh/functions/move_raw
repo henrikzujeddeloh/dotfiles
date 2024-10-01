@@ -1,2 +1,4 @@
+#!/bin/bash
+
 mkdir -p RAW
 find -E . -iregex '.*\.(RAF|CR2)' -exec mv '{}' ./RAW \;

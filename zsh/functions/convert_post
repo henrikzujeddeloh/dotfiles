@@ -1,1 +1,3 @@
+#!/bin/bash
+
 pandoc --standalone --template ../template.html post.md -o post.html

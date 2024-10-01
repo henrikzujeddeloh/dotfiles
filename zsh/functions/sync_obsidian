@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Sync Nexcloud Second-Brain Obsidian vault with iCloud vault
 # Make sure unison is installed!
 

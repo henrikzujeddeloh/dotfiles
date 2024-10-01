@@ -1,3 +1,5 @@
+#!/bin/bash
+
 TODAY=$(date +%Y-%m-%d)
 FOLDER="$HOME/Cloud/Second-Brain/journal"
 FILE="${FOLDER}/${TODAY}.md"

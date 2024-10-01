@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "RAW files without existing JPG"
 for filename in ./*; do
     name=${filename##*/}

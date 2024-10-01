@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "Remove RAW without existing JPG? "
 read reply
 echo
