@@ -23,7 +23,6 @@ plugins=(git sudo dirhistory aliases zsh-autosuggestions zsh-syntax-highlighting
 
 source $ZSH/oh-my-zsh.sh
 
-
 ### custom environment variables
 # Defines find command that fzf uses
 if [[ `uname` == "Linux" ]]; then
@@ -35,9 +34,19 @@ else
 fi
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 
-# add some paths to PATH
-export PATH=$PATH:$HOME/.local/bin
-export PATH="/usr/local/bin:$PATH"
+# Add to PATH
+path=(
+    $path                           # Keep existing PATH entries
+    $HOME/dotfiles/zsh/functions/
+    $HOME/.local/bin
+    /usr/local/bin
+)
+# Remove duplicate entries and non-existent directories
+typeset -U path
+path=($^path(N-/))
+
+export PATH
+
 
 # makes vim default editor and viewer
 set -o vi # use vim in terminal
@@ -54,12 +63,6 @@ bindkey -s '^o' 'cd_with_fzf^M'
 
 ### custom aliases
 . $HOME/dotfiles/zsh/aliases.zsh
-
-### custom functions
-fpath=($HOME/dotfiles/zsh/functions "${fpath[@]}")
-for file in $HOME/dotfiles/zsh/functions/*; do
-    autoload $file;
-done
 
 ### Display hostname on login
 hostname=$(hostname)
