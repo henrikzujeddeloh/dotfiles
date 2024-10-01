@@ -40,16 +40,17 @@ export PATH=$PATH:$HOME/.local/bin
 export PATH="/usr/local/bin:$PATH"
 
 # makes vim default editor and viewer
+set -o vi # use vim in terminal
 export VISUAL=nvim
 export EDITOR=nvim
 
+export BROWSER="firefox"
+
 ### custom keybinds
-bindkey "^b" backward-word
-bindkey "^w" forward-word
-bindkey "^h" backward-char
-bindkey "^l" forward-char
-bindkey '^j' autosuggest-accept
 bindkey -s '^o' 'cd_with_fzf^M'
+
+# CTRL-T: fzf files
+# CTRL-R: fzf command history
 
 ### custom aliases
 . $HOME/dotfiles/zsh/aliases.zsh
