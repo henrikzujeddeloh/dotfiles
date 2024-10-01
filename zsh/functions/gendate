@@ -1,0 +1,6 @@
+#!/bin/bash
+# Get the current date in the format "weekday, month date, year"
+formatted_date=$(date +"%A, %B %d, %Y")
+
+# Output the formatted date
+echo "$formatted_date"
