@@ -1,0 +1,4 @@
+nextcloud
+bitwarden
+grafana
+influxdb

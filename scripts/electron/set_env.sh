@@ -1,0 +1,5 @@
+#!/bin/bash
+
+export PING_KEY="XqvodhqCimKKe0HNSSxKCg"
+
+export PATH_TO_BACKUP="/srv/backup"
