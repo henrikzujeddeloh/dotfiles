@@ -63,8 +63,8 @@ export EDITOR=nvim
 export BROWSER="firefox"
 
 ### custom keybinds
-bindkey -s '^o' 'cd_with_fzf^M'
-bindkey '^j' autosuggest-accept
+bindkey -s '^O' 'source $FUNCTIONS/cd_with_fzf^M'
+bindkey '^J' autosuggest-accept
 
 # CTRL-T: fzf files
 # CTRL-R: fzf command history
