@@ -30,17 +30,6 @@ plugins=(git sudo dirhistory aliases zsh-autosuggestions zsh-syntax-highlighting
 
 source $ZSH/oh-my-zsh.sh
 
-### custom environment variables
-# Defines find command that fzf uses
-if [[ `uname` == "Linux" ]]; then
-    export FZF_DEFAULT_COMMAND='fdfind --hidden --type f'
-elif [[ `uname` == "Darwin" ]]; then
-    export FZF_DEFAULT_COMMAND='fd --hidden --type f'
-else
-    echo "Unknown OS!"
-fi
-export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
-
 # Add to PATH
 path=(
     $path                           # Keep existing PATH entries
@@ -73,5 +62,4 @@ bindkey '^J' autosuggest-accept
 . $DOTFILES/zsh/aliases.zsh
 
 ### Display hostname on login
-hostname=$(hostname)
-figurine -f "ANSI Regular.flf" $hostname
+echo $(hostname)
