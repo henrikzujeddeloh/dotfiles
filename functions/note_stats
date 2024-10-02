@@ -32,10 +32,8 @@ categorize_size() {
         echo "3KB-4KB"
     elif [ "$size_kb" -le 5 ]; then
         echo "4KB-5KB"
-    elif [ "$size_kb" -le 10 ]; then
-        echo "5KB-10KB"
     else
-        echo "10KB+"
+        echo "5KB+"
     fi
 }
 
