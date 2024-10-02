@@ -1,3 +1,9 @@
+# Directories
+export DOTFILES="$HOME/dotfiles"
+export SCRIPTS="$DOTFILES/scripts"
+export FUNCTIONS="$DOTFILES/functions"
+export CLOUD="$HOME/Cloud"
+
 # path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -37,7 +43,7 @@ export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 # Add to PATH
 path=(
     $path                           # Keep existing PATH entries
-    $HOME/dotfiles/zsh/functions/
+    $FUNCTIONS
     $HOME/.local/bin
     /usr/local/bin
 )
@@ -62,7 +68,7 @@ bindkey -s '^o' 'cd_with_fzf^M'
 # CTRL-R: fzf command history
 
 ### custom aliases
-. $HOME/dotfiles/zsh/aliases.zsh
+. $DOTFILES/zsh/aliases.zsh
 
 ### Display hostname on login
 hostname=$(hostname)

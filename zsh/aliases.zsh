@@ -2,7 +2,7 @@ alias e="exit"
 alias c="clear"
 alias n='nvim .'
 
-alias sb='cd ~/Cloud/Second-Brain/ && n'
+alias sb='cd $CLOUD/Second-Brain/ && n'
 
 # define "fd" command based on operating system
 if [[ `uname` == "Linux" ]]; then
