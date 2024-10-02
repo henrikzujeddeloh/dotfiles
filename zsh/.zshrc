@@ -64,6 +64,7 @@ export BROWSER="firefox"
 
 ### custom keybinds
 bindkey -s '^o' 'cd_with_fzf^M'
+bindkey '^j' autosuggest-accept
 
 # CTRL-T: fzf files
 # CTRL-R: fzf command history
