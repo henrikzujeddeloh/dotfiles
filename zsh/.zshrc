@@ -17,7 +17,7 @@ ZSH_DISABLE_COMPFIX=true
 DISABLE_AUTO_UPDATE=true
 
 # automatically update without prompting.
-DISABLE_UPDATE_PROMPT="true"
+DISABLE_UPDATE_PROMPT=true
 
 # TAB suggest hidden files/directories
 setopt globdots

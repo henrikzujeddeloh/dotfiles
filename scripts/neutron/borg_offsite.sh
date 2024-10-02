@@ -2,12 +2,12 @@
 
 set -e
 
-source $HOME/scripts/neutron/set_env.sh
+source $HOME/dotfiles/scripts/neutron/.env
 
 # set 'backup' in ssh config
-export SERVER=backup
-export REPO=neutron
-export DATE=$(date +%Y%m%d)
+SERVER=backup
+REPO=neutron
+DATE=$(date +%Y%m%d)
 
 curl -fsS --retry 5 -o /dev/null https://hc-ping.com/$PING_KEY/offsite-backup/start
 

@@ -3,7 +3,7 @@
 UUID_PHOTOS=aac17f78-c550-4986-990a-97e5c33c460b
 UUID_NEXTCLOUD=aac17f78-c550-4986-990a-97e5c33c460b
 
-source $HOME/scripts/neutron/set_env.sh
+source $HOME/dotfiles/scripts/neutron/.env
 
 export DATE=$(date +%Y%m%d)
 

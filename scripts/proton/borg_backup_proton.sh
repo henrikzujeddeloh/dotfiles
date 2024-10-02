@@ -2,11 +2,11 @@
 
 set -e
 
-source $HOME/scripts/proton/set_env.sh
+source $HOME/dotfiles/scripts/proton/.env
 
-export SERVER=henrik@neutron.lan
-export REPO=$PATH_TO_BACKUP/Backup/proton
-export DATE=$(date +%Y%m%d)
+SERVER=henrik@neutron.lan
+REPO=$PATH_TO_BACKUP/Backup/proton
+DATE=$(date +%Y%m%d)
 
 curl -fsS --retry 5 -o /dev/null https://hc-ping.com/$PING_KEY/proton-backup/start
 

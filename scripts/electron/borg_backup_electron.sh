@@ -2,11 +2,11 @@
 
 set -e
 
-source $HOME/scripts/electron/set_env.sh
+source $HOME/dotfiles/scripts/electron/.env
 
-export SERVER=henrik@neutron.lan
-export REPO=$PATH_TO_BACKUP/Backup/electron
-export DATE=$(date +%Y%m%d)
+SERVER=henrik@neutron.lan
+REPO=$PATH_TO_BACKUP/Backup/electron
+DATE=$(date +%Y%m%d)
 
 curl -fsS -m 10 --retry 5 -o /dev/null https://hc-ping.com/$PING_KEY/electron-backup/start
 

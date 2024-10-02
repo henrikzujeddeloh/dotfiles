@@ -2,10 +2,10 @@
 
 set -e
 
-source $HOME/scripts/neutron/set_env.sh
+source $HOME/dotfiles/scripts/neutron/.env
 
-export REPO=$PATH_TO_BACKUP/Backup/neutron
-export DATE=$(date +%Y%m%d)
+REPO=$PATH_TO_BACKUP/Backup/neutron
+DATE=$(date +%Y%m%d)
 
 curl -fsS --retry 5 -o /dev/null https://hc-ping.com/$PING_KEY/neutron-backup/start
 

@@ -3,4 +3,4 @@
 # Sync Nexcloud Second-Brain Obsidian vault with iCloud vault
 # Make sure unison is installed!
 
-unison -batch -auto -prefer newer ~/Cloud/Second-Brain /Users/henrikzujeddeloh/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/Second-Brain
+unison -batch -auto -prefer newer $CLOUD/Second-Brain /Users/henrikzujeddeloh/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/Second-Brain

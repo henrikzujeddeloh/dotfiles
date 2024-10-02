@@ -12,7 +12,7 @@ echo "updating omz"
 
 
 echo "updating docker containers"
-container_list="$HOME/scripts/electron/containers.txt"
+container_list="$HOME/dotfiles/scripts/electron/containers.txt"
 while read -r line
 do
   docker compose -f $HOME/docker/$line/docker-compose.yml pull && docker compose -f $HOME/docker/$line/docker-compose.yml up -d
