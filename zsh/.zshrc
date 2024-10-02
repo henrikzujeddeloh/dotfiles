@@ -3,6 +3,7 @@ export DOTFILES="$HOME/dotfiles"
 export SCRIPTS="$DOTFILES/scripts"
 export FUNCTIONS="$DOTFILES/functions"
 export CLOUD="$HOME/Cloud"
+export CONFIGS="$HOME/.config"
 
 # path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
