@@ -11,19 +11,19 @@ fi
 
 if [ $device = "proton" ] || [ $device = "raspberrypi" ]; then
     echo "Running proton update" 
-    /bin/bash $SCRIPTS/proton/update_proton.sh
+    /bin/bash $SCRIPTS/proton/update.sh
 
 elif [ $device = "electron" ]; then
     echo "Running electron update"
-    /bin/bash $SCRIPTS/electron/update_electron.sh
+    /bin/bash $SCRIPTS/electron/update.sh
 
 elif [ $device = "photon" ]; then
     echo "Running photon update"
-    /bin/bash $SCRIPTS/photon/update_photon.sh
+    /bin/bash $SCRIPTS/photon/update.sh
 
 elif [ $device = "neutron" ]; then
     echo "Running neutron update"
-    /bin/bash $SCRIPTS/neutron/update_neutron.sh
+    /bin/bash $SCRIPTS/neutron/update.sh
 
 else
     echo $device" does not have an update script"
