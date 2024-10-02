@@ -9,7 +9,7 @@ if [ -z $device ]; then
     device=$(hostname)
 fi
 
-if [ $device = "proton" || $device = "raspberrypi" ]; then
+if [ $device = "proton" ] || [ $device = "raspberrypi" ]; then
     echo "Running proton update" 
     /bin/bash $SCRIPTS/proton/update_proton.sh
 
