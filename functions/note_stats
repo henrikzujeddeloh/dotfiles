@@ -3,6 +3,7 @@
 # Use a temporary file to store dates and sizes
 temp_dates=$(mktemp)
 temp_sizes=$(mktemp)
+temp_files=$(mktemp)
 
 # Detect the operating system
 os_type=$(uname)
@@ -50,6 +51,9 @@ find . -type f -name "*.md" | while read file; do
     
     # Categorize the size and save to the temp file
     categorize_size "$file_size" >> "$temp_sizes"
+    
+    # Save file name and size to a temp file for sorting later
+    echo "$file_size $file" >> "$temp_files"
 done
 
 # Print modification date histogram
@@ -64,5 +68,13 @@ echo "---------------------"
 sort "$temp_sizes" | uniq -c
 echo ""
 
+# Sort files by size in descending order and print the 5 largest ones
+echo "Top 10 Largest Notes:"
+echo "--------------------"
+sort -nr "$temp_files" | head -n 10 | while read size file; do
+    size_kb=$(($size / 1024))  # Convert to KB for readability
+    echo "$file - $size_kb KB"
+done
+
 # Clean up temporary files
-rm "$temp_dates" "$temp_sizes"
+rm "$temp_dates" "$temp_sizes" "$temp_files"
