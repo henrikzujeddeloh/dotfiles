@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# Directory containing the Markdown files
+input_dir="$1"  # Pass the directory as an argument
+
+# Output file
+output_file="combined_journal.md"
+
+# Clear the output file if it exists
+> "$output_file"
+
+# Check if directory exists
+if [ ! -d "$input_dir" ]; then
+    echo "Directory does not exist: $input_dir"
+    exit 1
+fi
+
+# Find Markdown files with "YYYY-MM-DD.md" format and sort them by date
+find "$input_dir" -type f -name "[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9].md" | sort | while read file; do
+    if [ -f "$file" ]; then
+        # Append file contents to the output file
+        echo "Processing $file..."
+        cat "$file" >> "$output_file"
+        
+        # Optional: Add a horizontal rule between files for separation
+        echo -e "\n---\n" >> "$output_file"
+    fi
+done
+
+echo "All matching Markdown files have been combined into $output_file"
+
