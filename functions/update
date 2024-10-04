@@ -3,29 +3,45 @@
 # reads input argument
 device="$1"
 
-# runs corresponding update script
+# if no argument is passed, read device name as hostname
 if [ -z $device ]; then
-    # if no argument is passed, read device name as hostname
     device=$(hostname)
 fi
 
+# function to run the update script
+run_update_script() {
+    local script_path="$1"
+    local device_name="$2"
+
+    if [ ! -f "$script_path" ]; then
+        echo "[ERROR] Update script for $device_name not found at $script_path."
+        return 1
+    fi
+
+    echo "Running $device_name update..."
+    /bin/bash "$script_path"
+    
+    if [ $? -eq 0 ]; then
+        echo "[SUCCESS] $device_name update completed successfully."
+    else
+        echo "[ERROR] $device_name update failed."
+    fi
+}
+
+# run corresponding update script
 if [ $device = "proton" ] || [ $device = "raspberrypi" ]; then
-    echo "Running proton update" 
-    /bin/bash $SCRIPTS/proton/update.sh
+    run_update_script "$SCRIPTS/proton/update.sh" "proton"
 
 elif [ $device = "electron" ]; then
-    echo "Running electron update"
-    /bin/bash $SCRIPTS/electron/update.sh
+    run_update_script "$SCRIPTS/electron/update.sh" "electron"
 
 elif [ $device = "photon" ]; then
-    echo "Running photon update"
-    /bin/bash $SCRIPTS/photon/update.sh
+    run_update_script "$SCRIPTS/photon/update.sh" "photon"
 
 elif [ $device = "neutron" ]; then
-    echo "Running neutron update"
-    /bin/bash $SCRIPTS/neutron/update.sh
+    run_update_script "$SCRIPTS/neutron/update.sh" "neutron"
 
 else
-    echo $device" does not have an update script"
+    echo "[ERROR] $device does not have a corresponding update script."
 
 fi
