@@ -1,3 +1,31 @@
 #!/bin/bash
 
-exiftool -R -d '%Y-%m-%d_%H-%M-%S%%-02.c.%%e' '-filename<CreateDate' *
+# Check if exiftool is installed
+if ! command -v exiftool &> /dev/null; then
+    echo "[ERROR] exiftool is not installed. Please install it and try again."
+    exit 1
+fi
+
+# Check if a directory is provided as an argument
+if [ -z "$1" ]; then
+    echo "[ERROR] No directory specified. Usage: $0 <directory>"
+    exit 1
+fi
+
+# Get the directory from the argument
+directory="$1"
+
+# Check if the provided argument is a valid directory
+if [ ! -d "$directory" ]; then
+    echo "[ERROR] The specified path is not a directory: $directory"
+    exit 1
+fi
+
+# Run exiftool to rename files based on their capture date
+echo "Renaming files in $directory based on capture date..."
+if exiftool -R -d '%Y-%m-%d_%H-%M-%S%%-02.c.%%e' '-filename<CreateDate' "$directory"/*; then
+    echo "[SUCCESS] Files renamed successfully."
+else
+    echo "[ERROR] Failed to rename files. Please check for issues with exiftool."
+    exit 1
+fi
