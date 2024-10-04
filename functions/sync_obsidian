@@ -1,6 +1,41 @@
 #!/bin/bash
 
 # Sync Nexcloud Second-Brain Obsidian vault with iCloud vault
-# Make sure unison is installed!
 
-unison -batch -auto -prefer newer $CLOUD/Second-Brain /Users/henrikzujeddeloh/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/Second-Brain
+# define local and iCloud Obsidian Vault locations
+local_vault="$CLOUD/Second-Brain"
+icloud_vault="$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents/Second-Brain"
+
+# Function to check if a directory exists
+check_directory() {
+    local dir="$1"
+    if [ ! -d "$dir" ]; then
+        echo "[ERROR] Directory does not exist: $dir"
+        return 1
+    fi
+    return 0
+}
+
+# Function to check if unison is installed
+check_unison_installed() {
+    if ! command -v unison &> /dev/null; then
+        echo "[ERROR] Unison is not installed. Please install it before running the script."
+        return 1
+    fi
+    return 0
+}
+
+# Check if unison is installed and both directories exist
+check_unison_installed || exit 1
+check_directory "$local_vault" || exit 1
+check_directory "$icloud_vault" || exit 1
+
+# Run unison sync if all checks pass
+echo "Running unison sync..."
+unison -batch -auto -prefer newer "$local_vault" "$icloud_vault"
+
+if [ $? -eq 0 ]; then
+    echo "[SUCCESS] Sync completed successfully."
+else
+    echo "[ERROR] Sync failed."
+fi
