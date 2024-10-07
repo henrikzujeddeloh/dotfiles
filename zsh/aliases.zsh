@@ -13,6 +13,17 @@ else
     echo "Unknown OS!"
 fi
 
+# define obsidian neovim functions based on operating system
+if [[ `uname` == "Linux" ]]; then
+    alias obsidian_dup_links='obsidian_dup_links_linux'
+    alias obsidian_unlinked_mentions='obsidian_unlinked_mentions_linux'
+elif [[ `uname` == "Darwin" ]]; then
+    alias obsidian_dup_links='obsidian_dup_links_mac'
+    alias obsidian_unlinked_mentions='obsidian_unlinked_mentions_mac'
+else
+    echo "Unknown OS!"
+fi
+
 # docker aliases
 alias dcud='docker compose up -d'
 alias dcub='docker compose up --build'
