@@ -8,6 +8,10 @@ temp_files=$(mktemp)
 # Detect the operating system
 os_type=$(uname)
 
+# Variables to store the total number of notes and total size
+total_notes=0
+total_size=0
+
 # Function to get file size based on the operating system
 get_file_size() {
     if [[ "$os_type" == "Darwin" ]]; then
@@ -39,7 +43,7 @@ categorize_size() {
 }
 
 # Scan the current directory recursively and get modification times and file sizes
-find . -type f -name "*.md" | while read file; do
+while IFS= read -r file; do
     # Extract modification date (formatted as Year-Month, e.g., 2023-09)
     mod_date=$(date -r "$file" +"%Y-%m")
     
@@ -49,23 +53,32 @@ find . -type f -name "*.md" | while read file; do
     # Get file size in bytes using the correct `stat` function based on OS
     file_size=$(get_file_size "$file")
     
+    # Add to total size and increment note count
+    total_size=$((total_size + file_size))
+    total_notes=$((total_notes + 1))
+    
     # Categorize the size and save to the temp file
     categorize_size "$file_size" >> "$temp_sizes"
     
     # Save file name and size to a temp file for sorting later
     echo "$file_size $file" >> "$temp_files"
-done
+done < <(find . -type f -name "*.md")
+
 
 # Print modification date histogram
 echo "Modification Date Histogram:"
 echo "----------------------------"
 sort "$temp_dates" | uniq -c
 echo ""
+echo "Total Number of Notes: $total_notes"
+echo ""
 
 # Print file size histogram
 echo "File Size Histogram:"
 echo "---------------------"
 sort "$temp_sizes" | uniq -c
+echo ""
+echo "Total Size of All Notes: $((total_size / 1024)) KB"
 echo ""
 
 # Sort files by size in descending order and print the 5 largest ones
