@@ -1,6 +1,6 @@
 #!/bin/bash
 
-UUID_PHOTOS=aac17f78-c550-4986-990a-97e5c33c460b
+UUID_PHOTOS=
 UUID_NEXTCLOUD=aac17f78-c550-4986-990a-97e5c33c460b
 
 source $HOME/dotfiles/scripts/neutron/.env
