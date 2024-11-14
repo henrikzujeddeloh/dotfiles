@@ -1,0 +1,34 @@
+#!/bin/bash
+
+device=$(hostname)
+
+if [ $device = "photon" ]; then
+
+    source $HOME/dotfiles/scripts/photon/.env
+
+    SERVER=henrik@neutron.lan
+    REPO=$PATH_TO_BACKUP/Backup/photon
+    MOUNTPOINT=/tmp/browse_backup
+
+    mkdir -p $MOUNTPOINT
+
+    sudo borg mount -o allow_other $SERVER:$REPO $MOUNTPOINT
+
+    open $MOUNTPOINT
+
+    # Wait for user confirmation to unmount
+    while true; do
+        read -p "Press 'y' to unmount the backup folder: " response
+        if [[ "$response" == "y" ]]; then
+            sudo borg umount $MOUNTPOINT
+            echo "Backup unmounted."
+            break
+        else
+            echo "Waiting for 'y' to unmount..."
+        fi
+    done
+
+    # Clean up the temporary directory
+    rm -r $MOUNTPOINT
+
+fi
