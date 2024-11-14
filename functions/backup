@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# reads input argument
+device="$1"
+
+# if no argument is passed, read device name as hostname
+if [ -z $device ]; then
+    device=$(hostname)
+fi
+
+# function to run the backup script
+run_backup_script() {
+    local script_path="$1"
+    local device_name="$2"
+
+    if [ ! -f "$script_path" ]; then
+        echo "[ERROR] Backup script for $device_name not found at $script_path."
+        return 1
+    fi
+
+    echo "Running $device_name backup..."
+    /bin/bash "$script_path"
+    
+    if [ $? -eq 0 ]; then
+        echo "[SUCCESS] $device_name backup completed successfully."
+    else
+        echo "[ERROR] $device_name backup failed."
+    fi
+}
+
+# run corresponding backup script
+if [ $device = "photon" ]; then
+    run_backup_script "$SCRIPTS/photon/backup.sh" "photon"
+
+elif [ $device = "electron" ]; then
+    run_backup_script "$SCRIPTS/electron/backup.sh" "electron"
+
+elif [ $device = "proton" ]; then
+    run_backup_script "$SCRIPTS/photon/backup.sh" "proton"
+
+elif [ $device = "neutron" ]; then
+    run_backup_script "$SCRIPTS/neutron/backup.sh" "neutron"
+
+else
+    echo "[ERROR] $device does not have a corresponding backup script."
+
+fi
