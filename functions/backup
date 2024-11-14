@@ -32,14 +32,8 @@ run_backup_script() {
 if [ $device = "photon" ]; then
     run_backup_script "$SCRIPTS/photon/backup.sh" "photon"
 
-elif [ $device = "electron" ]; then
-    run_backup_script "$SCRIPTS/electron/backup.sh" "electron"
-
-elif [ $device = "proton" ]; then
-    run_backup_script "$SCRIPTS/photon/backup.sh" "proton"
-
-elif [ $device = "neutron" ]; then
-    run_backup_script "$SCRIPTS/neutron/backup.sh" "neutron"
+elif [ $device = "muon" ]; then
+    run_backup_script "$SCRIPTS/muon/backup.sh" "muon"
 
 else
     echo "[ERROR] $device does not have a corresponding backup script."
