@@ -2,3 +2,4 @@ nextcloud
 bitwarden
 grafana
 influxdb
+scrutiny
