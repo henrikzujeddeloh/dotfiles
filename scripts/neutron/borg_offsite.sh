@@ -21,5 +21,10 @@ borg create --stats $SERVER:$REPO::$DATE $PATH_TO_DATA/Photos $PATH_TO_DATA/Next
 # prune borg backup
 borg prune --list --stats --keep-daily 7 --keep-weekly 4 --keep-monthly 12 $SERVER:$REPO >> $PATH_TO_BACKUP/Backup/logs/${DATE}_borg_offsite.txt 2>&1
 
+# on the first day of the month, compact borg repo
+if [[ $(date +%d) -eq 01 ]]; then
+    borg compact $SERVER:$REPO >> $PATH_TO_BACKUP/Backup/logs/${DATE}_borg_offsite.txt 2>&1
+fi
+
 # stop healthchecks.io ping
 curl -fsS --retry 5 -o /dev/null https://hc-ping.com/$PING_KEY/offsite-backup

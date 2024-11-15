@@ -19,5 +19,10 @@ sudo borg create --stats $REPO::$DATE /home/ /etc/ > $PATH_TO_BACKUP/Backup/logs
 # prune borg backup
 sudo borg prune --list --stats --keep-daily 7 --keep-weekly 4 --keep-monthly 12 $REPO >> $PATH_TO_BACKUP/Backup/logs/${DATE}_borg_backup_neutron.txt 2>&1
 
+# on the first day of the month, compact borg repo
+if [[ $(date +%d) -eq 01 ]]; then
+    sudo borg compact $REPO >> $PATH_TO_BACKUP/Backup/logs/${DATE}_borg_backup_neutron.txt 2>&1
+fi
+
 # stop healthchecks.io ping
 curl -fsS --retry 5 -o /dev/null https://hc-ping.com/$PING_KEY/neutron-backup
