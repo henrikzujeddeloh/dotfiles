@@ -32,6 +32,9 @@ run_backup_script() {
 if [ $device = "photon" ]; then
     run_backup_script "$SCRIPTS/photon/backup.sh" "photon"
 
+elif [ $device = "neutron" ]; then
+    run_backup_script "$SCRIPTS/neutron/borg_offline.sh" "neutron"
+
 elif [ $device = "muon" ]; then
     run_backup_script "$SCRIPTS/muon/backup.sh" "muon"
 
