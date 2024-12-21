@@ -12,7 +12,10 @@ REPO=$PATH_TO_BACKUP/Backup/electron
 DATE=$(date +%Y%m%d)
 
 # start healthchecks.io ping
-curl -fsS -m 10 --retry 5 -o /dev/null https://hc-ping.com/$PING_KEY/electron-backup/start
+#curl -fsS -m 10 --retry 5 -o /dev/null https://hc-ping.com/$PING_KEY/electron-backup/start
+
+# start time
+start_time=$(date -u +%s%3N)
 
 # create temporary directory for backup log
 mkdir -p /tmp/backup_output
@@ -35,5 +38,13 @@ scp /tmp/backup_output/${DATE}_borg_backup_electron.txt henrik@neutron.lan:/$PAT
 rm /tmp/backup_output/${DATE}_borg_backup_electron.txt
 
 # stop healthchecks.io ping
-curl -fsS -m 10 --retry 5 -o /dev/null https://hc-ping.com/$PING_KEY/electron-backup
+#curl -fsS -m 10 --retry 5 -o /dev/null https://hc-ping.com/$PING_KEY/electron-backup
+
+# stop time
+end_time=$(date -u +%s%3N)
+
+# duration
+duration=$(($end_time - $start_time))
  
+# ping uptime kuma
+curl "http://uptime.lan/api/push/TSZZsIcaal0EufHNRjfQzWmSYm2j3FNv?status=up&msg=OK&ping=$duration"
