@@ -3,3 +3,5 @@ bitwarden
 grafana
 influxdb
 scrutiny
+caddy
+openspeedtest

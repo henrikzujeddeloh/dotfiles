@@ -1,7 +1,6 @@
 homebridge
 mosquitto
-local-npm
-openspeedtest
 pihole
 unifi
-unifi-poller
+caddy
+uptime
