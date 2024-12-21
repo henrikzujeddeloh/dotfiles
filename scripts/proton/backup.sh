@@ -11,8 +11,11 @@ SERVER=henrik@neutron.lan
 REPO=$PATH_TO_BACKUP/Backup/proton
 DATE=$(date +%Y%m%d)
 
+# start time
+start_time=$(date -u +%s%3N)
+
 # start healthchecks.io ping
-curl -fsS --retry 5 -o /dev/null https://hc-ping.com/$PING_KEY/proton-backup/start
+# curl -fsS --retry 5 -o /dev/null https://hc-ping.com/$PING_KEY/proton-backup/start
 
 # create temporary directory for backup log
 mkdir -p /tmp/backup_output
@@ -35,4 +38,13 @@ scp /tmp/backup_output/${DATE}_borg_backup_proton.txt henrik@neutron.lan:/$PATH_
 rm /tmp/backup_output/${DATE}_borg_backup_proton.txt
 
 # stop healthchecks.io ping
-curl -fsS --retry 5 -o /dev/null https://hc-ping.com/$PING_KEY/proton-backup
+# curl -fsS --retry 5 -o /dev/null https://hc-ping.com/$PING_KEY/proton-backup
+
+# end time
+end_time=$(date -u +%s%3N)
+
+# duration
+duration=$(($end_time - $start_time))
+
+# ping uptime kuma
+curl "http://uptime.lan/api/push/HVWMV2A99s?status=up&msg=OK&ping=$duration"
