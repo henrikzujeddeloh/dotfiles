@@ -29,14 +29,14 @@ if [[ $(date +%d) -eq 01 ]]; then
     borg compact $SERVER:$REPO >> $PATH_TO_BACKUP/Backup/logs/${DATE}_borg_offsite.txt 2>&1
 fi
 
+# stop healthchecks.io ping
+#curl -fsS --retry 5 -o /dev/null https://hc-ping.com/$PING_KEY/offsite-backup
+
 # stop time
 end_time=$(date -u +%s%3N)
 
 # duration
 duration=$(($end_time - $start_time))
 
-# stop healthchecks.io ping
-#curl -fsS --retry 5 -o /dev/null https://hc-ping.com/$PING_KEY/offsite-backup
-
 # ping uptime kuma
-http://uptime.lan/api/push/eaYQLb1iKW?status=up&msg=OK&ping=
+curl "http://uptime.lan/api/push/eaYQLb1iKW?status=up&msg=OK&ping=$duration"
