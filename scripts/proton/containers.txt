@@ -4,3 +4,4 @@ pihole
 unifi
 caddy
 uptime
+gotify

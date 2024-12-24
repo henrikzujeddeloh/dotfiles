@@ -1,3 +1,2 @@
-npm
 openspeedtest
-nginx
+caddy
