@@ -3,7 +3,7 @@ alias c="clear"
 alias h="hostname"
 alias n='nvim .'
 
-alias sb='cd $CLOUD/Second-Brain/ && n'
+alias sb='cd $CLOUD/Second-Brain/ && nvim dashboard.md'
 
 # define "fd" command based on operating system
 if [[ `uname` == "Linux" ]]; then

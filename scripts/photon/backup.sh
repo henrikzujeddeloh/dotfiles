@@ -3,12 +3,10 @@
 # exit script on error
 set -e
 
-# source photon environment variable file
-source $HOME/dotfiles/scripts/photon/.env
-
 # define server and repository
+PATH_TO_BACKUP=/srv/data/Backup
 SERVER=henrik@neutron.lan
-REPO=$PATH_TO_BACKUP/Backup/photon
+REPO=$PATH_TO_BACKUP/photon
 DATE=$(date +%Y%m%d-%H%M)
 
 # create borg backup

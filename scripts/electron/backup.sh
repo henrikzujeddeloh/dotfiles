@@ -3,16 +3,12 @@
 # exit script on error
 set -e
 
-# source electron environment variables
-source $HOME/dotfiles/scripts/electron/.env
-
 # define server and repository
+PATH_TO_BACKUP=/srv/data/Backup
+PATH_TO_LOGS=/var/log/backup
 SERVER=henrik@neutron.lan
-REPO=$PATH_TO_BACKUP/Backup/electron
+REPO=$PATH_TO_BACKUP/electron
 DATE=$(date +%Y%m%d)
-
-# start healthchecks.io ping
-#curl -fsS -m 10 --retry 5 -o /dev/null https://hc-ping.com/$PING_KEY/electron-backup/start
 
 # start time
 start_time=$(date -u +%s%3N)
@@ -32,13 +28,10 @@ if [[ $(date +%d) -eq 01 ]]; then
 fi
 
 # copy backup log to remote backup disk
-scp /tmp/backup_output/${DATE}_borg_backup_electron.txt henrik@neutron.lan:/$PATH_TO_BACKUP/Backup/logs/
+scp /tmp/backup_output/${DATE}_borg_backup_electron.txt henrik@neutron.lan:/$PATH_TO_LOGS
 
 # remove local backup log
 rm /tmp/backup_output/${DATE}_borg_backup_electron.txt
-
-# stop healthchecks.io ping
-#curl -fsS -m 10 --retry 5 -o /dev/null https://hc-ping.com/$PING_KEY/electron-backup
 
 # stop time
 end_time=$(date -u +%s%3N)

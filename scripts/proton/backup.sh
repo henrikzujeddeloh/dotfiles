@@ -3,19 +3,15 @@
 # exit script on error
 set -e
 
-# source proton environment variables
-source $HOME/dotfiles/scripts/proton/.env
-
 # define server and repository
+PATH_TO_BACKUP=/srv/data/Backup
+PATH_TO_LOGS=/var/log/backup
 SERVER=henrik@neutron.lan
-REPO=$PATH_TO_BACKUP/Backup/proton
+REPO=$PATH_TO_BACKUP/proton
 DATE=$(date +%Y%m%d)
 
 # start time
 start_time=$(date -u +%s%3N)
-
-# start healthchecks.io ping
-# curl -fsS --retry 5 -o /dev/null https://hc-ping.com/$PING_KEY/proton-backup/start
 
 # create temporary directory for backup log
 mkdir -p /tmp/backup_output
@@ -32,13 +28,10 @@ if [[ $(date +%d) -eq 01 ]]; then
 fi
 
 # copy backup log to remote backup disk
-scp /tmp/backup_output/${DATE}_borg_backup_proton.txt henrik@neutron.lan:/$PATH_TO_BACKUP/Backup/logs/
+scp /tmp/backup_output/${DATE}_borg_backup_proton.txt henrik@neutron.lan:/$PATH_TO_LOGS
 
 # remove local backup log
 rm /tmp/backup_output/${DATE}_borg_backup_proton.txt
-
-# stop healthchecks.io ping
-# curl -fsS --retry 5 -o /dev/null https://hc-ping.com/$PING_KEY/proton-backup
 
 # end time
 end_time=$(date -u +%s%3N)
