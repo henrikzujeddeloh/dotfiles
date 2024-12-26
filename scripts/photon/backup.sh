@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# exit script on error
-set -e
-
 # define server and repository
 PATH_TO_BACKUP=/srv/data/Backup
 SERVER=henrik@neutron.lan
