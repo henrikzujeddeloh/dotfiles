@@ -5,25 +5,25 @@ set -e
 
 # define repository
 PATH_TO_BACKUP=/srv/data/Backup
-PATH_TO_LOGS=/var/log/backup
+PATH_TO_LOGS=/var/log/electron_backup.txt
 REPO=$PATH_TO_BACKUP/neutron
 DATE=$(date +%Y%m%d)
 
-# start healthcheck.io ping
-#curl -fsS --retry 5 -o /dev/null https://hc-ping.com/$PING_KEY/neutron-backup/start
+sudo echo "START BACKUP" $DATE | sudo tee -a $PATH_TO_LOGS
+sudo chown henrik $PATH_TO_LOGS
 
 # start time
 start_time=$(date -u +%s%3N)
 
 # create borg backup
-sudo borg create --stats $REPO::$DATE /home/ /etc/ > $PATH_TO_LOGS/${DATE}_borg_backup_neutron.txt 2>&1
+sudo borg create --stats $REPO::$DATE /home/ /etc/ >> $PATH_TO_LOGS 2>&1
 
 # prune borg backup
-sudo borg prune --list --stats --keep-daily 7 --keep-weekly 4 --keep-monthly 12 $REPO >> $PATH_TO_LOGS/${DATE}_borg_backup_neutron.txt 2>&1
+sudo borg prune --list --stats --keep-daily 7 --keep-weekly 4 --keep-monthly 12 $REPO >> $PATH_TO_LOGS 2>&1
 
 # on the first day of the month, compact borg repo
 if [[ $(date +%d) -eq 01 ]]; then
-    sudo borg compact $REPO >> $PATH_TO_LOGS/${DATE}_borg_backup_neutron.txt 2>&1
+    sudo borg compact $REPO >> $PATH_TO_LOGS 2>&1
 fi
 
 # stop time
