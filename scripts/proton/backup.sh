@@ -5,7 +5,7 @@ set -e
 
 # define server and repository
 PATH_TO_BACKUP=/srv/data/Backup
-PATH_TO_LOGS=/var/log/backup
+PATH_TO_LOGS=/var/log/proton_backup.txt
 SERVER=henrik@neutron.lan
 REPO=$PATH_TO_BACKUP/proton
 DATE=$(date +%Y%m%d)
@@ -13,25 +13,19 @@ DATE=$(date +%Y%m%d)
 # start time
 start_time=$(date -u +%s%3N)
 
-# create temporary directory for backup log
-mkdir -p /tmp/backup_output
+sudo echo "START BACKUP" $DATE | sudo tee -a $PATH_TO_LOGS
+sudo chown pi $PATH_TO_LOGS
 
 # create borg backup
-sudo borg create --stats $SERVER:$REPO::$DATE /home/ /etc/ > /tmp/backup_output/${DATE}_borg_backup_proton.txt 2>&1
+sudo borg create --stats $SERVER:$REPO::$DATE /home/ /etc/ >> $PATH_TO_LOGS 2>&1
 
 # prune borg backup
-sudo borg prune --list --stats --keep-daily 7 --keep-weekly 4 --keep-monthly 12 $SERVER:$REPO >> /tmp/backup_output/${DATE}_borg_backup_proton.txt 2>&1
+sudo borg prune --list --stats --keep-daily 7 --keep-weekly 4 --keep-monthly 12 $SERVER:$REPO >> $PATH_TO_LOGS 2>&1
 
 # on the first day of the month, compact borg repo
 if [[ $(date +%d) -eq 01 ]]; then
-    sudo borg compact $SERVER:$REPO >> /tmp/backup_output/${DATE}_borg_backup_proton.txt 2>&1
+    sudo borg compact $SERVER:$REPO >> $PATH_TO_LOGS 2>&1
 fi
-
-# copy backup log to remote backup disk
-scp /tmp/backup_output/${DATE}_borg_backup_proton.txt henrik@neutron.lan:/$PATH_TO_LOGS
-
-# remove local backup log
-rm /tmp/backup_output/${DATE}_borg_backup_proton.txt
 
 # end time
 end_time=$(date -u +%s%3N)
