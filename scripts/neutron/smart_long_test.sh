@@ -1,18 +1,12 @@
 #!/bin/bash
 
-# source neutron environment variables
-source $HOME/dotfiles/scripts/neutron/.env
-
-# start healthchecks.io ping
-curl -fsS --retry 5 -o /dev/null https://hc-ping.com/$PING_KEY/smart-long-test/start
-
 # Drives to test
 SATADISKS=("/dev/sda" "/dev/sdb" "/dev/sdc")
 NVMEDISKS=("/dev/nvme0")
 
 # Log file
 DATE=$(date +%Y%m%d)
-LOGFILE="/srv/backup/Backup/logs/smart/long_test_$DATE.log"
+LOGFILE="/var/log/smart/long_test_$DATE.log"
 
 # Function to start a short self-test
 start_test() {
@@ -37,6 +31,3 @@ for drive in "${NVMEDISKS[@]}"; do
 done
 
 echo "All tests initiated at $(date)" | tee -a "$LOGFILE"
-
-# stop healthchecks.io ping
-curl -fsS --retry 5 -o /dev/null https://hc-ping.com/$PING_KEY/smart-long-test
