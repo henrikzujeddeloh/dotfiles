@@ -1,4 +1,6 @@
 homeassistant
+esphome
+zigbee2mqtt
 mosquitto
 pihole
 unifi
