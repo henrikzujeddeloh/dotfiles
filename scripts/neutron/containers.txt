@@ -2,6 +2,7 @@ nextcloud
 bitwarden
 grafana
 influxdb
+esphome
 scrutiny
 caddy
 openspeedtest

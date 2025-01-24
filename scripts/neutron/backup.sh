@@ -5,7 +5,7 @@ set -e
 
 # define repository
 PATH_TO_BACKUP=/srv/data/Backup
-PATH_TO_LOGS=/var/log/electron_backup.txt
+PATH_TO_LOGS=/var/log/neutron_backup.txt
 REPO=$PATH_TO_BACKUP/neutron
 DATE=$(date +%Y%m%d)
 
