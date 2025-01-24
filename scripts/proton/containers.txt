@@ -1,4 +1,5 @@
-homebridge
+homeassistant
+zigbee2mqtt
 mosquitto
 pihole
 unifi
