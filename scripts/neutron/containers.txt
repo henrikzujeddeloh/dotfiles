@@ -1,5 +1,6 @@
 nextcloud
 bitwarden
+immich
 grafana
 influxdb
 esphome
