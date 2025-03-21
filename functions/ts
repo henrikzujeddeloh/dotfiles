@@ -1,0 +1,16 @@
+#!/bin/bash
+
+SESSION_NAME=$1
+# SESSION_NAME=$(tmux ls | fzf --prompt="Select tmux session: " --tac --preview="echo {}" | awk -F: '{print $1}')
+
+# Check if the session exists and switch to it or create it
+tmux has-session -t $SESSION_NAME 2>/dev/null
+
+if [ $? != 0 ]; then
+    # Session does not exist, create it
+    tmux new-session -d -s $SESSION_NAME
+    tmux switch-client -t $SESSION_NAME
+else
+    # Session exists, switch to it
+    tmux switch-client -t $SESSION_NAME
+fi
