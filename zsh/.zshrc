@@ -2,6 +2,7 @@
 export DOTFILES="$HOME/dotfiles"
 export SCRIPTS="$DOTFILES/scripts"
 export FUNCTIONS="$DOTFILES/functions"
+export PROJECTS="$HOME/projects"
 export CLOUD="$HOME/Cloud"
 export CONFIGS="$HOME/.config"
 

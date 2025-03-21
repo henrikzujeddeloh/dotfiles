@@ -15,13 +15,7 @@ else
 fi
 
 # docker aliases
-alias dcud='docker compose up -d'
-alias dcub='docker compose up --build'
-alias dcubd='docker compose up --build -d'
-alias dcp='docker compose --pull'
-alias dlf='docker logs -f'
-alias dst='docker stats'
-alias dps='docker ps'
+alias dc='docker compose'
 
 # tmux aliases
 alias ta='tmux attach'
