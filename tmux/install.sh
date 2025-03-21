@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# check if tmux is installed
+if ! which tmux &> /dev/null
+then
+    echo "tmux is not installed. Please install tmux first."
+    exit 1
+fi
+
 # remove existing tmux config
 rm -f ~/.tmux.conf
 
