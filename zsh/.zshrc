@@ -64,3 +64,5 @@ bindkey '^J' autosuggest-accept
 
 ### Display hostname on login
 echo $(hostname)
+export http_proxy="http://www-int2.inet.dkfz-heidelberg.de:3128"
+export https_proxy="http://www-int2.inet.dkfz-heidelberg.de:3128"
