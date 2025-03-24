@@ -1,4 +1,4 @@
-*CapsLock::
+﻿*CapsLock::
 {
     Send "{LControl down}"
 }
