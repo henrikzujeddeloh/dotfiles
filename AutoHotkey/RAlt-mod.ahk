@@ -1,0 +1,27 @@
+﻿#SingleInstance Force
+#Requires AutoHotkey v2.0
+
+RAlt & f::Send "("
+RAlt & j::Send ")"
+RAlt & d::Send "["
+RAlt & k::Send "]"
+RAlt & s::Send "{{}"
+RAlt & l::Send "{}}"
+RAlt & a::Send "<"
+RAlt & ö::Send ">"
+RAlt & g::Send "\"
+RAlt & h::Send "/"
+RAlt & u::Send "{+}"
+RAlt & t::Send "*"
+RAlt & r::Send "-"
+RAlt & e::Send "="
+RAlt & m::Send '"'
+RAlt & n::Send "'"
+RAlt & b::Send "``"
+RAlt & q::Send "?"
+RAlt & w::Send "{!}"
+RAlt & c::Send "_"
+RAlt & x::Send "%"
+RAlt & v::Send "{#}"
+RAlt & p::Send "&"
+RAlt & o::Send "|"
