@@ -1,6 +1,8 @@
 ﻿#SingleInstance Force
 #Requires AutoHotkey v2.0
 
+SC056::LShift
+
 GetKeyboardLanguage() {
     WinID := WinExist("A")
     ThreadID := DllCall("GetWindowThreadProcessId", "Ptr", WinID, "Ptr", 0)
@@ -8,36 +10,39 @@ GetKeyboardLanguage() {
     Return KeyboardLayout & 0xFFFF
 }
 
-RAlt & f::Send "("
-RAlt & j::Send ")"
-RAlt & d::Send "["
-RAlt & k::Send "]"
-RAlt & s::Send "{{}"
-RAlt & l::Send "{}}"
-RAlt & a::Send "<"
+<^>!f::Send "("
+<^>!j::Send ")"
+<^>!d::Send "["
+<^>!k::Send "]"
+<^>!s::Send "{{}"
+<^>!l::Send "{}}"
+<^>!a::Send "<"
++<^>!a::Send "@"
 #HotIf GetKeyboardLanguage() = 0x0407  ; German layout 
-RAlt & ö::Send ">"
+<^>!ö::Send ">"
 #HotIf GetKeyboardLanguage() = 0x0409  ; English US layout  
-RAlt & `;::Send ">"
+<^>!`;::Send ">"
 #HotIf
-RAlt & g::Send "\"
-RAlt & h::Send "/"
-RAlt & u::Send "{+}"
-RAlt & t::Send "*"
-RAlt & r::Send "-"
-RAlt & e::Send "="
-RAlt & m::Send '"'
-RAlt & n::Send "'"
-RAlt & b::Send "``"
-RAlt & q::Send "?"
-RAlt & w::Send "{!}"
-RAlt & c::Send "_"
+<^>!g::Send "\"
+<^>!h::Send "/"
+<^>!u::Send "{+}"
+<^>!t::Send "*"
+<^>!r::Send "-"
+<^>!e::Send "="
+<^>!m::Send '"'
+<^>!n::Send "'"
+<^>!b::Send "``"
+<^>!q::Send "?"
+<^>!w::Send "{!}"
+<^>!c::Send "_"
 #HotIf GetKeyboardLanguage() = 0x0407  ; German layout
-RAlt & y::Send "$"
+<^>!y::Send "$"
++<^>!y::Send "€"
 #HotIf GetKeyboardLanguage() = 0x0409  ; English US layout
-RAlt & z::Send "$"
+<^>!z::Send "$"
++<^>!z::Send "€"
 #HotIf
-RAlt & x::Send "%"
-RAlt & v::Send "{#}"
-RAlt & p::Send "&"
-RAlt & o::Send "|"
+<^>!x::Send "%"
+<^>!v::Send "{#}"
+<^>!p::Send "&"
+<^>!o::Send "|"
