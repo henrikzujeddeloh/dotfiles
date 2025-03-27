@@ -1,5 +1,5 @@
 # Yabai and SKHD
-Used for managing windows and application shortcuts on macOS.
+Window manager for macOS
 Configuration attempts to mimic i3.
 
 ## Requirements

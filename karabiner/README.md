@@ -1,5 +1,5 @@
 # Karabiner
-Keyboard customizer for macOS.
+Key remapper for macOS
 
 ## Requirements
 Install the following using `brew`:
@@ -11,6 +11,7 @@ See [this](https://karabiner-elements.pqrs.org/docs/manual/misc/configuration-fi
 
 ## Keybinds
 All configured in `karabiner.json`.
-- `caps_lock` -> `escape` (when pressed alone), `control` (when held used with another key)
-- `right_alt` + `aou` -> äöü (or ÄÖÜ with `shift`)
-- `right_command` -> `right_option` (on Keychron K2)
+- CAPS -> ESC (when pressed alone), CTRL (when held used with another key)
+- R-CMD -> R-OPTION (on Keychron K2)
+- Swap R-CMD and R-OPTION (on mac Keyboards)
+- Swap L-CMD and L-OPTION (on mac Keyboards)

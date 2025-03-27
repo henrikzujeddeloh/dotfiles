@@ -11,7 +11,6 @@ Install the following **FIRST** using `brew` or `apt`:
 - fzf
 - fd (macOS)
 - fdfind (Ubuntu and Debian)
-- figurine (manual installation from [here](https://github.com/arsham/figurine/releases/latest))
 - neovim (default editor)
 
 ## Plugins
