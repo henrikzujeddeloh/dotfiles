@@ -1,6 +1,8 @@
 ﻿#SingleInstance Force
 #Requires AutoHotkey v2.0
 
+SC01B::Enter
+SC02B::Enter 
 SC056::LShift
 
 GetKeyboardLanguage() {
