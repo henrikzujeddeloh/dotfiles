@@ -18,3 +18,5 @@ fi
 for file in $DOTFILES/hammerspoon/*; do
   ln -s "$file" $HOME/.hammerspoon/
 done
+# reload hammerspoon
+hs -c "hc.reload()"
