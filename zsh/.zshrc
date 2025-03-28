@@ -64,3 +64,7 @@ bindkey '^J' autosuggest-accept
 
 ### Display hostname on login
 echo $(hostname)
+if [ "$(hostname)" = "E020-NB003" ]; then
+    export http_proxy=http://www-int2.dkfz-heidelberg.de:3128
+    export https_proxy=http://www-int2.dkfz-heidelberg.de:3128
+fi
