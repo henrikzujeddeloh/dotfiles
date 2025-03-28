@@ -15,3 +15,4 @@ All configured in `karabiner.json`.
 - R-CMD -> R-OPTION (on Keychron K2)
 - Swap R-CMD and R-OPTION (on mac Keyboards)
 - Swap L-CMD and L-OPTION (on mac Keyboards)
+- Swap "x" and "y" (on German keyboards)
