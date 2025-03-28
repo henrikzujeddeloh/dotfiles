@@ -202,5 +202,6 @@ Escape::
 #HotIf
 <^>!x::Send "%"
 <^>!v::Send "{#}"
+<^>!i::Send "~"
 <^>!p::Send "&"
 <^>!o::Send "|"
