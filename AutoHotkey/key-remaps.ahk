@@ -39,7 +39,135 @@ z::y
 y::z
 #HotIf
 
-; 
+
+
+global umlautMode := false
+; RAlt+U toggles umlaut mode
+<^>!u::
+{
+    global umlautMode
+    umlautMode := true
+    ToolTip("Umlaut mode ON")
+    SetTimer(() => ToolTip(), -1000)
+    SetTimer(DisableUmlautMode, -3000)
+}
+
+DisableUmlautMode()
+{
+    global umlautMode
+    umlautMode := false
+    ToolTip("Umlaut mode OFF")
+    SetTimer(() => ToolTip(), -1000)
+}
+
+#InputLevel 1
+
+; Regular hotkeys that check the umlaut mode variable
+a::
+{
+    global umlautMode
+    if (umlautMode) {
+        Send("ä")
+        umlautMode := false
+    } else {
+        Send("{Blind}a")
+    }
+}
+
+o::
+{
+    global umlautMode
+    if (umlautMode) {
+        Send("ö")
+        umlautMode := false
+    } else {
+        Send("{Blind}o")
+    }
+}
+
+u::
+{
+    global umlautMode
+    if (umlautMode) {
+        Send("ü")
+        umlautMode := false
+    } else {
+        Send("{Blind}u")
+    }
+}
+
+s::
+{
+    global umlautMode
+    if (umlautMode) {
+        Send("ß")
+        umlautMode := false
+    } else {
+        Send("{Blind}s")
+    }
+}
+
++a::
+{
+    global umlautMode
+    if (umlautMode) {
+        Send("Ä")
+        umlautMode := false
+    } else {
+        Send("{Blind}A")
+    }
+}
+
++o::
+{
+    global umlautMode
+    if (umlautMode) {
+        Send("Ö")
+        umlautMode := false
+    } else {
+        Send("{Blind}O")
+    }
+}
+
++u::
+{
+    global umlautMode
+    if (umlautMode) {
+        Send("Ü")
+        umlautMode := false
+    } else {
+        Send("{Blind}U")
+    }
+}
+
++s::
+{
+    global umlautMode
+    if (umlautMode) {
+        Send("ẞ")
+        umlautMode := false
+    } else {
+        Send("{Blind}S")
+    }
+}
+
+Escape::
+{
+    global umlautMode
+    if (umlautMode) {
+        umlautMode := false
+        ToolTip("Umlaut mode canceled")
+        SetTimer(() => ToolTip(), -1000)
+    } else {
+        Send("{Blind}{Escape}")
+    }
+}
+
+; Reset input level
+#InputLevel 0
+
+
+; create symbol layer with R-Alt
 <^>!f::Send "("
 <^>!j::Send ")"
 <^>!d::Send "["
@@ -55,8 +183,7 @@ y::z
 #HotIf
 <^>!g::Send "\"
 <^>!h::Send "/"
-<^>!u::Send "{+}"
-<^>!t::Send "*"
+<^>!t::Send "{+}"
 <^>!r::Send "-"
 <^>!e::Send "="
 <^>!m::Send '"'
@@ -68,6 +195,7 @@ y::z
 #HotIf GetKeyboardLanguage() = 0x0407  ; German layout
 <^>!y::Send "$"
 +<^>!y::Send "€"
+<^>!z::Send "*"
 #HotIf GetKeyboardLanguage() = 0x0409  ; English US layout
 <^>!z::Send "$"
 +<^>!z::Send "€"
