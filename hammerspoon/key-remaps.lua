@@ -37,8 +37,7 @@ hs.hotkey.bind({ "rightalt", "shift" }, "a", function()
 end)
 remapKey({ "rightalt" }, "g", "\\")
 remapKey({ "rightalt" }, "h", "/")
-remapKey({ "rightalt" }, "u", "+")
-remapKey({ "rightalt" }, "t", "*")
+remapKey({ "rightalt" }, "t", "+")
 remapKey({ "rightalt" }, "r", "-")
 remapKey({ "rightalt" }, "e", "=")
 remapKey({ "rightalt" }, "m", "\"")
@@ -69,6 +68,8 @@ local function setupLayoutSpecificBindings()
         -- German layout specific shortcut
         table.insert(layoutSpecificHotkeys, hs.hotkey.bind({ "rightalt" }, "ö",
             function() hs.eventtap.keyStrokes(">") end))
+        table.insert(layoutSpecificHotkeys, hs.hotkey.bind({ "rightalt" }, "y",
+            function() hs.eventtap.keyStrokes("*") end))
         table.insert(layoutSpecificHotkeys, hs.hotkey.bind({ "rightalt" }, "z",
             function() hs.eventtap.keyStrokes("$") end))
         table.insert(layoutSpecificHotkeys,
@@ -77,6 +78,8 @@ local function setupLayoutSpecificBindings()
         -- US layout specific shortcuts
         table.insert(layoutSpecificHotkeys, hs.hotkey.bind({ "rightalt" }, ";",
             function() hs.eventtap.keyStrokes(">") end))
+        table.insert(layoutSpecificHotkeys, hs.hotkey.bind({ "rightalt" }, "z",
+            function() hs.eventtap.keyStrokes("*") end))
         table.insert(layoutSpecificHotkeys, hs.hotkey.bind({ "rightalt" }, "y",
             function() hs.eventtap.keyStrokes("$") end))
         table.insert(layoutSpecificHotkeys,
