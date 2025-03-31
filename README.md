@@ -10,30 +10,29 @@ The install script deletes the current configuration and creates a new symbolic 
 
 ## Configs Relevant for...
 ### macOS
-- yabai
-- karabiner
-- hammerspoon
-- alacritty
-- zsh
-- tmux
-- neovim
+- yabai for window management
+- kanata for key remapping
+- alacritty as terminal emulator
+- zsh as shell
+- tmux as terminal multiplexer
+- neovim as text/code editor
 - ssh
 
 ### Linux
-- i3
-- xmodmap or kmonad
-- alacritty
-- zsh 
-- tmux
-- neovim
+- i3/sway for window management
+- kanata as key remapping
+- alacritty as terminal emulator
+- zsh as shell
+- tmux as terminal multiplexer
+- neovim as text/code editor
 - ssh
 
 ### Windows
-- AutoHotkey
+- AutoHotkey as key remapping
 - alacritty (altered for WSL)
 
 #### WSL
-- zsh (altered for DKFZ proxy)
+- zsh
 - tmux
 - neovim
 
