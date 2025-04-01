@@ -2,11 +2,27 @@
   process-unmapped-keys yes
 )
 
+(deflocalkeys-macos
+  ß    12
+  ´    13
+  z    21
+  ü    26
+  +    27
+  ö    39
+  ä    40
+  <    41
+  #    43
+  y    44
+  -    53
+  ^    86
+)
+
 (defsrc
-  z y 
-  lalt lmet
-  rmet ralt
-  caps s d f j k l
+  ^
+  tab  q    w    e    r    t    z    u    i    o    p
+  caps a    s    d    f    g    h    j    k    l    ö
+  lsft <    y    x    c    v    b    n    m    
+  lctl lalt lmet      spc       rmet ralt
 )
 
 (defvar
@@ -22,11 +38,58 @@
   j (tap-hold $tap-time $hold-time j rmet)
   k (tap-hold $tap-time $hold-time k rctl)
   l (tap-hold $tap-time $hold-time l rsft)
+  sym (layer-toggle symbols)
+  sym2 (layer-toggle symbols2)
+  < <
+  { RA-8
+  [ RA-5
+  lp S-8
+  \ S-RA-7
+  / S-7
+  rp S-9
+  ] RA-6
+  } RA-9
+  > S-<
+  ? S-ß
+  ! S-1
+  = S-0
+  - -
+  + +
+  * S-+
+  ~ RA-n
+  | RA-7
+  & S-6
+  $ S-4
+  % S-5
+  _ S--
+  # #
+  ` S-´
+  ' S-#
+  q S-2
+  at RA-l
+  € RA-e
 )
 
 (deflayer base
-  y z
-  lmet lalt
-  ralt rmet
-  @escctrl @s @d @f @j @k @l
+  ^
+  tab  q    w    e    r    t    y    u    i    o    p
+  @escctrl a    @s    @d    @f    g    h    @j    @k    @l  ö
+  lsft <    z    x    c    v    b    n    m    
+  lctl lmet lalt      spc       @sym   rmet
+)
+
+(deflayer symbols
+  lrld
+  _    @?    @!    @=    @-    @+    @*    _     @~    @|    @&
+  _    @<    @[    @{    @lp   @\    @/    @rp   @]    @}    @>
+ @sym2   _     @$    @%    @_    @#    @`    @'    @q
+  _    _     _            _          _     _
+)
+
+(deflayer symbols2
+  _
+  _    _    _    _    _    _    _    _     _    _   _
+  _    @at    _    _    _   _    _    _   _    _   _
+  _    _    @€     _    _    _    _    _    _
+  _    _     _            _          _     _
 )
