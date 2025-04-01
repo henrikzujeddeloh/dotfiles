@@ -3,7 +3,8 @@ Keyboard layers manager
 
 ## Installation
 
-## macOS
+### macOS
+(Ideally run `install.sh` and everything should work)
 1. Install using `brew install kanata`.
 2. Add `kanata` binary to Settings > Input Monitoring to enable permissions. (use `which kanata` to find path to binary).
 3. Run `sudo katana -c $HOME/dotfiles/kanata/kanata.kbd` to test.
