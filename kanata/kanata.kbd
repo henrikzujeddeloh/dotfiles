@@ -19,7 +19,7 @@
 
 (defsrc
   ^
-  tab  q    w    e    r    t    z    u    i    o    p
+  tab  q    w    e    r    t    z    u    i    o    p   ü
   caps a    s    d    f    g    h    j    k    l    ö
   lsft <    y    x    c    v    b    n    m    
   lctl lalt lmet      spc       rmet ralt
@@ -72,7 +72,7 @@
 
 (deflayer base
   ^
-  tab  q    w    e    r    t    y    u    i    o    p
+  tab  q    w    e    r    t    y    u    i    o    p   bspc
   @escctrl a    @s    @d    @f    g    h    @j    @k    @l  ö
   lsft <    z    x    c    v    b    n    m    
   lctl lmet lalt      spc       @sym   rmet
@@ -80,15 +80,15 @@
 
 (deflayer symbols
   lrld
-  _    @?    @!    @=    @-    @+    @*    _     @~    @|    @&
+  _    @?    @!    @=    @-    @+    @*    _     @~    @|    @&   _
   _    @<    @[    @{    @lp   @\    @/    @rp   @]    @}    @>
- @sym2   _     @$    @%    @_    @#    @`    @'    @q
+ @sym2 _     @$    @%    @_    @#    @`    @'    @q
   _    _     _            _          _     _
 )
 
 (deflayer symbols2
   _
-  _    _    _    _    _    _    _    _     _    _   _
+  _    _    _    _    _    _    _    _     _    _   _   _
   _    @at    _    _    _   _    _    _   _    _   _
   _    _    @€     _    _    _    _    _    _
   _    _     _            _          _     _
