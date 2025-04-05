@@ -31,7 +31,7 @@
 )
 
 (defalias
-  escctrl (tap-hold 150 200 esc lctl)
+  ectl (tap-hold 150 200 esc lctl)
   s (tap-hold $tap-time $hold-time s lsft)
   d (tap-hold $tap-time $hold-time d lctl)
   f (tap-hold $tap-time $hold-time f lmet)
@@ -40,6 +40,15 @@
   l (tap-hold $tap-time $hold-time l rsft)
   sym (layer-toggle symbols)
   sym2 (layer-toggle symbols2)
+  um (one-shot 2000 (layer-toggle umlaut))
+  um2 (layer-toggle umlaut2)
+  ae ä
+  ue ü
+  oe ö
+  sz ß
+  Ae S-ä
+  Ue S-ü
+  Oe S-ö
   < <
   { RA-8
   [ RA-5
@@ -63,7 +72,7 @@
   % S-5
   _ S--
   # #
-  ` S-´
+  ` (macro S-´ spc)
   ' S-#
   q S-2
   at RA-l
@@ -72,24 +81,40 @@
 
 (deflayer base
   ^
-  tab  q    w    e    r    t    y    u    i    o    p   bspc
-  @escctrl a    @s    @d    @f    g    h    @j    @k    @l  ö
-  lsft <    z    x    c    v    b    n    m    
-  lctl lmet lalt      spc       @sym   rmet
+  tab   q    w     e     i     t     y     u     i     o     p    bspc
+  @ectl a    @s    @d    @f    g     h     @j    @k    @l    ö
+  lsft  <    z     x     c     v     b     n     m    
+  lctl  lmet lalt        spc         @sym  rmet
 )
 
 (deflayer symbols
   lrld
-  _    @?    @!    @=    @-    @+    @*    _     @~    @|    @&   _
-  _    @<    @[    @{    @lp   @\    @/    @rp   @]    @}    @>
+  _    @?    @!    @=    @-    @+    @*    @um   @~    @|    @&   _
+  _    @<    @{    @[    @lp   @\    @/    @rp   @]    @}    @>
  @sym2 _     @$    @%    @_    @#    @`    @'    @q
   _    _     _            _          _     _
 )
 
 (deflayer symbols2
   _
-  _    _    _    _    _    _    _    _     _    _   _   _
-  _    @at    _    _    _   _    _    _   _    _   _
-  _    _    @€     _    _    _    _    _    _
-  _    _     _            _          _     _
+  _    _     _     _     _     _     _     _     _     _     _    _
+  _    @at   _     _     _     _     _     _     _     _     _
+  _    _     @€    _     _     _     _     _     _
+  _    _     _           _           _     _
+)
+
+(deflayer umlaut
+  _
+  _    _     _     _     _     _     _     @ue   _     @oe   _    _
+  _    @ae   @sz   _     _     _     _     _     _     _     _
+  @um2 _     _     _     _     _     _     _     _
+  _    _     _           _           _     _
+)
+
+(deflayer umlaut2
+  _
+  _    _     _     _     _     _     _     @Ue   _     @Oe   _    _
+  _    @Ae   _     _     _     _     _     _     _     _     _
+  _    _     _     _     _     _     _     _     _
+  _    _     _           _          _     _
 )
