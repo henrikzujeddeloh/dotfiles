@@ -81,7 +81,7 @@
 
 (deflayer base
   ^
-  tab   q    w     e     i     t     y     u     i     o     p    bspc
+  tab   q    w     e     r     t     y     u     i     o     p    bspc
   @ectl a    @s    @d    @f    g     h     @j    @k    @l    ö
   lsft  <    z     x     c     v     b     n     m    
   lctl  lmet lalt        spc         @sym  rmet
@@ -89,10 +89,10 @@
 
 (deflayer symbols
   lrld
-  _    @?    @!    @=    @-    @+    @*    @um   @~    @|    @&   _
-  _    @<    @{    @[    @lp   @\    @/    @rp   @]    @}    @>
- @sym2 _     @$    @%    @_    @#    @`    @'    @q
-  _    _     _            _          _     _
+  _     @?   @!    @=    @-    @+    @*    @um   @~    @|    @&   _
+  _     @<   @{    @[    @lp   @\    @/    @rp   @]    @}    @>
+  @sym2 _    @$    @%    @_    @#    @`    @'    @q
+  _     _    _            _          _     _
 )
 
 (deflayer symbols2
