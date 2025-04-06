@@ -1,0 +1,4 @@
+#!/bin/bash
+formatted_time=$(LC_TIME=en_US.UTF-8 date +"%H:%M")
+
+echo "$formatted_time"
