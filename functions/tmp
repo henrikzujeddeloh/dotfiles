@@ -1,0 +1,6 @@
+#!/bin/bash
+
+FOLDER="$CLOUD/Second-Brain"
+FILE="${FOLDER}/tmp.md"
+
+nvim "${FILE}"
