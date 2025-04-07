@@ -28,7 +28,8 @@ The install script deletes the current configuration and creates a new symbolic 
 - ssh
 
 ### Windows
-- AutoHotkey as key remapping
+- kanata as key remapping
+- AutoHotkey as additional functions
 - alacritty (altered for WSL)
 
 #### WSL
