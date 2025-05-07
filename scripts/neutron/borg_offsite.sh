@@ -18,7 +18,7 @@ sudo chown henrik $PATH_TO_LOGS
 start_time=$(date -u +%s%3N)
 
 # create borg backup
-borg create --stats $SERVER:$REPO::$DATE $PATH_TO_DATA/Photos $PATH_TO_DATA/Nextcloud/henrik/files $PATH_TO_DATA/Nextcloud/josina/files >> $PATH_TO_LOGS 2>&1
+borg create --stats $SERVER:$REPO::$DATE $PATH_TO_DATA/Photos $PATH_TO_DATA/Nextcloud/henrik/files $PATH_TO_DATA/Nextcloud/josina/files $PATH_TO_DATA/Immich/library >> $PATH_TO_LOGS 2>&1
 
 # prune borg backup
 borg prune --list --stats --keep-daily 7 --keep-weekly 4 --keep-monthly 12 $SERVER:$REPO >> $PATH_TO_LOGS 2>&1
