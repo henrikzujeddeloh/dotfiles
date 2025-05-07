@@ -7,3 +7,4 @@ esphome
 scrutiny
 caddy
 openspeedtest
+openwebui
