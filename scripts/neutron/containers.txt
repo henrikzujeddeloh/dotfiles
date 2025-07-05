@@ -8,3 +8,4 @@ scrutiny
 caddy
 openspeedtest
 openwebui
+dawarich
