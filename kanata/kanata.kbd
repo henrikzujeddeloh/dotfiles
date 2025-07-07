@@ -82,7 +82,7 @@
 (deflayer base
   ^
   tab   q    w     e     r     t     y     u     i     o     p    bspc
-  @ectl a    @s    @d    @f    g     h     @j    @k    @l    ö
+  @ectl a    s     d     f     g     h     j     k     l    ö
   lsft  <    z     x     c     v     b     n     m    
   lctl  lmet lalt        spc         @sym  rmet
 )
