@@ -4,8 +4,8 @@ immich
 grafana
 influxdb
 esphome
-scrutiny
-caddy
 openspeedtest
 openwebui
 dawarich
+caddy
+kanboard

@@ -1,8 +1,8 @@
 homeassistant
 zigbee2mqtt
 mosquitto
-pihole
 unifi
-caddy
 uptime
 gotify
+caddy
+pihole
