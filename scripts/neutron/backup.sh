@@ -1,36 +1,28 @@
 #!/bin/bash
 
-# exit script on error
-set -e
+start_time=$(date -u +%s%3N)
 
-# define repository
+GOTIFY_APP_TOKEN="AHgbe0nz1_eLwOG"
 PATH_TO_BACKUP=/srv/data/Backup
-PATH_TO_LOGS=/var/log/neutron_backup.txt
 REPO=$PATH_TO_BACKUP/neutron
 DATE=$(date +%Y%m%d)
 
-sudo echo "START BACKUP" $DATE | sudo tee -a $PATH_TO_LOGS
-sudo chown henrik $PATH_TO_LOGS
+output="neutron backup $(date +%d-%m-%Y)"$'\n'
+output+="----------------------------------------------"$'\n'
 
-# start time
-start_time=$(date -u +%s%3N)
+output+="$(sudo borg create --stats $REPO::$DATE /home/ /etc/ 2>&1)"$'\n' || { curl -sSf -o /dev/null "http://gotify.lan/message?token=$GOTIFY_APP_TOKEN" -F "title=neutron backup failed" -F "message=$output" -F "priority=5"; exit 1; }
+output+="----------------------------------------------"$'\n'
 
-# create borg backup
-sudo borg create --stats $REPO::$DATE /home/ /etc/ >> $PATH_TO_LOGS 2>&1
+output+="$(sudo borg prune --list --stats --keep-daily 7 --keep-weekly 4 --keep-monthly 12 $REPO 2>&1)"$'\n' || { curl -sSf -o /dev/null "http://gotify.lan/message?token=$GOTIFY_APP_TOKEN" -F "title=neutron backup failed" -F "message=$output" -F "priority=5"; exit 1; }
+output+="----------------------------------------------"$'\n'
 
-# prune borg backup
-sudo borg prune --list --stats --keep-daily 7 --keep-weekly 4 --keep-monthly 12 $REPO >> $PATH_TO_LOGS 2>&1
-
-# on the first day of the month, compact borg repo
 if [[ $(date +%d) -eq 01 ]]; then
-    sudo borg compact $REPO >> $PATH_TO_LOGS 2>&1
+    output+="$(sudo borg compact $REPO 2>&1)"$'\n' || { curl -sSf -o /dev/null "http://gotify.lan/message?token=$GOTIFY_APP_TOKEN" -F "title=neutron backup failed" -F "message=$output" -F "priority=5"; exit 1; }
 fi
+output+="----------------------------------------------"$'\n'
 
-# stop time
 end_time=$(date -u +%s%3N)
+duration=$((end_time - start_time))
+output+=$(printf "Total duration: %02dh:%02dm:%02ds\n" $((duration/3600000)) $((duration%3600000/60000)) $((duration%60000/1000)))
 
-# duration
-duration=$(($end_time - $start_time))
-
-# ping uptime kuma
-curl "http://uptime.lan/api/push/Iu0zBvn9CG?status=up&msg=OK&ping=$duration"
+curl -sSf -o /dev/null "http://gotify.lan/message?token=$GOTIFY_APP_TOKEN" -F "title=neutron backup successful" -F "message=$output" -F "priority=1"
