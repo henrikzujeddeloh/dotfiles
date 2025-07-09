@@ -2,7 +2,7 @@
 
 start_time=$(date -u +%s%3N)
 
-GOTIFY_APP_TOKEN="<app_token>"
+GOTIFY_APP_TOKEN="AHgbe0nz1_eLwOG"
 PATH_TO_BACKUP=/srv/data/Backup
 REPO=$PATH_TO_BACKUP/electron
 SERVER=henrik@neutron.lan
