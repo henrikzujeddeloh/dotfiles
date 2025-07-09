@@ -1,33 +1,22 @@
 #!/bin/bash
 
-# Drives to test
-SATADISKS=("/dev/sda" "/dev/sdb" "/dev/sdc")
-NVMEDISKS=("/dev/nvme0")
+GOTIFY_APP_TOKEN="AHgbe0nz1_eLwOG"
 
-# Log file
-DATE=$(date +%Y%m%d)
-LOGFILE="/var/log/smart/long_test_$DATE.log"
+# Drives to test
+DISKS=("/dev/sda" "/dev/sdb" "/dev/nvme0")
 
 # Function to start a short self-test
 start_test() {
   local drive=$1
-  echo "Starting long SMART test on $drive at $(date)" | tee -a "$LOGFILE"
-  sudo smartctl -t long "$drive" >> "$LOGFILE" 2>&1
-  if [ $? -eq 0 ]; then
-    echo "Long SMART test initiated successfully on $drive" | tee -a "$LOGFILE"
-  else
-    echo "Failed to initiate long SMART test on $drive" | tee -a "$LOGFILE"
+  output+="$(sudo smartctl -t long "$drive" 2>&1)"
+  if [ $? -ne 0 ]; then
+    curl -sSf -o /dev/null "http://gotify.lan/message?token=$GOTIFY_APP_TOKEN" -F "title=$drive Long SMART Test Alert" -F "message=$output" -F "priority=5"
   fi
 }
 
 # Run tests for SATA drives
-for drive in "${SATADISKS[@]}"; do
+for drive in "${DISKS[@]}"; do
   start_test "$drive"
 done
 
-# Run test for NVMe drive
-for drive in "${NVMEDISKS[@]}"; do
-  start_test "$drive"
-done
-
-echo "All tests initiated at $(date)" | tee -a "$LOGFILE"
+curl -sSf -o /dev/null "http://gotify.lan/message?token=$GOTIFY_APP_TOKEN" -F "title=Long SMART Tests Started" -F "message=$output" -F "priority=1"
