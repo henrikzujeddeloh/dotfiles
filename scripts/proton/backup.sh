@@ -1,37 +1,29 @@
 #!/bin/bash
 
-# exit script on error
-set -e
-
-# define server and repository
-PATH_TO_BACKUP=/srv/data/Backup
-PATH_TO_LOGS=/var/log/proton_backup.txt
-SERVER=henrik@neutron.lan
-REPO=$PATH_TO_BACKUP/proton
-DATE=$(date +%Y%m%d)
-
-# start time
 start_time=$(date -u +%s%3N)
 
-sudo echo "START BACKUP" $DATE | sudo tee -a $PATH_TO_LOGS
-sudo chown pi $PATH_TO_LOGS
+GOTIFY_APP_TOKEN="<app_token>"
+PATH_TO_BACKUP=/srv/data/Backup
+REPO=$PATH_TO_BACKUP/proton
+SERVER=henrik@neutron.lan
+DATE=$(date +%Y%m%d)
 
-# create borg backup
-sudo borg create --stats $SERVER:$REPO::$DATE /home/ /etc/ >> $PATH_TO_LOGS 2>&1
+output="proton backup $(date +%d-%m-%Y)"$'\n'
+output+="----------------------------------------------"$'\n'
 
-# prune borg backup
-sudo borg prune --list --stats --keep-daily 7 --keep-weekly 4 --keep-monthly 12 $SERVER:$REPO >> $PATH_TO_LOGS 2>&1
+output+="$(sudo borg create --stats $SERVER:$REPO::$DATE /home/ /etc/ 2>&1)"$'\n' || { curl -sSf -o /dev/null "http://gotify.lan/message?token=$GOTIFY_APP_TOKEN" -F "title=proton backup failed" -F "message=$output" -F "priority=5"; exit 1; }
+output+="----------------------------------------------"$'\n'
 
-# on the first day of the month, compact borg repo
+output+="$(sudo borg prune --list --stats --keep-daily 7 --keep-weekly 4 --keep-monthly 12 $SERVER:$REPO 2>&1)"$'\n' || { curl -sSf -o /dev/null "http://gotify.lan/message?token=$GOTIFY_APP_TOKEN" -F "title=proton backup failed" -F "message=$output" -F "priority=5"; exit 1; }
+output+="----------------------------------------------"$'\n'
+
 if [[ $(date +%d) -eq 01 ]]; then
-    sudo borg compact $SERVER:$REPO >> $PATH_TO_LOGS 2>&1
+    output+="$(sudo borg compact $SERVER:$REPO 2>&1)"$'\n' || { curl -sSf -o /dev/null "http://gotify.lan/message?token=$GOTIFY_APP_TOKEN" -F "title=proton backup failed" -F "message=$output" -F "priority=5"; exit 1; }
 fi
+output+="----------------------------------------------"$'\n'
 
-# end time
 end_time=$(date -u +%s%3N)
+duration=$((end_time - start_time))
+output+=$(printf "Total duration: %02dh:%02dm:%02ds\n" $((duration/3600000)) $((duration%3600000/60000)) $((duration%60000/1000)))
 
-# duration
-duration=$(($end_time - $start_time))
-
-# ping uptime kuma
-curl "http://uptime.lan/api/push/HVWMV2A99s?status=up&msg=OK&ping=$duration"
+curl -sSf -o /dev/null "http://gotify.lan/message?token=$GOTIFY_APP_TOKEN" -F "title=proton backup successful" -F "message=$output" -F "priority=1"
