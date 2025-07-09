@@ -11,14 +11,14 @@ DATE=$(date +%Y%m%d)
 output="offsite backup $(date +%d-%m-%Y)"$'\n'
 output+="----------------------------------------------"$'\n'
 
-output+="$(sudo borg create --stats $SERVER:$REPO::$DATE $PATH_TO_DATA/Photos $PATH_TO_DATA/Nextcloud/henrik/files $PATH_TO_DATA/Nextcloud/josina/files $PATH_TO_DATA/Immich/library 2>&1)"$'\n' || { curl -sSf -o /dev/null "http://gotify.lan/message?token=$GOTIFY_APP_TOKEN" -F "title=offsite backup failed" -F "message=$output" -F "priority=5"; exit 1; }
+output+="$(borg create --stats $SERVER:$REPO::$DATE $PATH_TO_DATA/Photos $PATH_TO_DATA/Nextcloud/henrik/files $PATH_TO_DATA/Nextcloud/josina/files $PATH_TO_DATA/Immich/library 2>&1)"$'\n' || { curl -sSf -o /dev/null "http://gotify.lan/message?token=$GOTIFY_APP_TOKEN" -F "title=offsite backup failed" -F "message=$output" -F "priority=5"; exit 1; }
 output+="----------------------------------------------"$'\n'
 
-output+="$(sudo borg prune --list --stats --keep-daily 7 --keep-weekly 4 --keep-monthly 12 $SERVER:$REPO 2>&1)"$'\n' || { curl -sSf -o /dev/null "http://gotify.lan/message?token=$GOTIFY_APP_TOKEN" -F "title=offsite backup failed" -F "message=$output" -F "priority=5"; exit 1; }
+output+="$(borg prune --list --stats --keep-daily 7 --keep-weekly 4 --keep-monthly 12 $SERVER:$REPO 2>&1)"$'\n' || { curl -sSf -o /dev/null "http://gotify.lan/message?token=$GOTIFY_APP_TOKEN" -F "title=offsite backup failed" -F "message=$output" -F "priority=5"; exit 1; }
 output+="----------------------------------------------"$'\n'
 
 if [[ $(date +%d) -eq 01 ]]; then
-    output+="$(sudo borg compact $SERVER:$REPO 2>&1)"$'\n' || { curl -sSf -o /dev/null "http://gotify.lan/message?token=$GOTIFY_APP_TOKEN" -F "title=offsite backup failed" -F "message=$output" -F "priority=5"; exit 1; }
+    output+="$(borg compact $SERVER:$REPO 2>&1)"$'\n' || { curl -sSf -o /dev/null "http://gotify.lan/message?token=$GOTIFY_APP_TOKEN" -F "title=offsite backup failed" -F "message=$output" -F "priority=5"; exit 1; }
 fi
 output+="----------------------------------------------"$'\n'
 
