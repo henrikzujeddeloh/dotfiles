@@ -1,38 +1,30 @@
 #!/bin/bash
 
-# exit script on error
-set -e
+start_time=$(date -u +%s%3N)
 
-# define "server" and repository
-# set 'backup' in ssh config
 PATH_TO_DATA=/srv/data
-PATH_TO_LOGS=/var/log/offsite_backup.txt
+GOTIFY_APP_TOKEN="AHgbe0nz1_eLwOG"
 SERVER=backup
 REPO=neutron
 DATE=$(date +%Y%m%d)
 
-sudo echo "START BACKUP" $DATE | sudo tee -a $PATH_TO_LOGS
-sudo chown henrik $PATH_TO_LOGS
+output="offsite backup $(date +%d-%m-%Y)"$'\n'
+output+="----------------------------------------------"$'\n'
 
-# start time
-start_time=$(date -u +%s%3N)
+output+="$(sudo borg create --stats $SERVER:$REPO::$DATE $PATH_TO_DATA/Photos $PATH_TO_DATA/Nextcloud/henrik/files $PATH_TO_DATA/Nextcloud/josina/files $PATH_TO_DATA/Immich/library 2>&1)"$'\n' || { curl -sSf -o /dev/null "http://gotify.lan/message?token=$GOTIFY_APP_TOKEN" -F "title=offsite backup failed" -F "message=$output" -F "priority=5"; exit 1; }
+output+="----------------------------------------------"$'\n'
 
-# create borg backup
-borg create --stats $SERVER:$REPO::$DATE $PATH_TO_DATA/Photos $PATH_TO_DATA/Nextcloud/henrik/files $PATH_TO_DATA/Nextcloud/josina/files $PATH_TO_DATA/Immich/library >> $PATH_TO_LOGS 2>&1
+output+="$(sudo borg prune --list --stats --keep-daily 7 --keep-weekly 4 --keep-monthly 12 $SERVER:$REPO 2>&1)"$'\n' || { curl -sSf -o /dev/null "http://gotify.lan/message?token=$GOTIFY_APP_TOKEN" -F "title=offsite backup failed" -F "message=$output" -F "priority=5"; exit 1; }
+output+="----------------------------------------------"$'\n'
 
-# prune borg backup
-borg prune --list --stats --keep-daily 7 --keep-weekly 4 --keep-monthly 12 $SERVER:$REPO >> $PATH_TO_LOGS 2>&1
-
-# on the first day of the month, compact borg repo
 if [[ $(date +%d) -eq 01 ]]; then
-    borg compact $SERVER:$REPO >> $PATH_TO_LOGS 2>&1
+    output+="$(sudo borg compact $SERVER:$REPO 2>&1)"$'\n' || { curl -sSf -o /dev/null "http://gotify.lan/message?token=$GOTIFY_APP_TOKEN" -F "title=offsite backup failed" -F "message=$output" -F "priority=5"; exit 1; }
 fi
+output+="----------------------------------------------"$'\n'
 
-# stop time
 end_time=$(date -u +%s%3N)
+duration=$((end_time - start_time))
+output+=$(printf "Total duration: %02dh:%02dm:%02ds\n" $((duration/3600000)) $((duration%3600000/60000)) $((duration%60000/1000)))
 
-# duration
-duration=$(($end_time - $start_time))
+curl -sSf -o /dev/null "http://gotify.lan/message?token=$GOTIFY_APP_TOKEN" -F "title=offsite backup successful" -F "message=$output" -F "priority=1"
 
-# ping uptime kuma
-curl "http://uptime.lan/api/push/eaYQLb1iKW?status=up&msg=OK&ping=$duration"
