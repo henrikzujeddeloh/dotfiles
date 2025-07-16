@@ -1,0 +1,27 @@
+# check every 10 minutes that RAID array is healthy 
+*/10 * * * * $HOME/dotfiles/scripts/neutron/check_array.sh
+
+# trigger daily Kanboard background tasks
+0 0 * * * curl -sSf -o /dev/null https://kanboard.henrikz.net/\?controller\=CronjobController\&action\=run\&token\=6f6bc3797e6e222a5c056a0754edcfec30e9aaeca53661f6f223924acbeb
+# borg backups (compact and check on the 1st every month)
+0 0 * * * $HOME/dotfiles/scripts/neutron/backup.sh
+0 0 * * * $HOME/dotfiles/scripts/neutron/borg_offsite.sh
+
+# Weekly SMART tests
+0 0 2,9,16 * * $HOME/dotfiles/scripts/neutron/smart_short_test.sh
+0 0 23 * * $HOME/dotfiles/scripts/neutron/smart_long_test.sh
+
+# monthly RAID consistency check
+0 0 8 * * $HOME/dotfiles/scripts/neutron/check_raid_consistency.sh
+
+# Add recurring tasks to kanboard
+0 0 1 * * $HOME/dotfiles/scripts/neutron/recurring_task_kanboard.sh "Finances"
+0 0 1 * * $HOME/dotfiles/scripts/neutron/recurring_task_kanboard.sh "Updates"
+0 0 1 * * $HOME/dotfiles/scripts/neutron/recurring_task_kanboard.sh "Offline backups"
+0 0 1 */2 * $HOME/dotfiles/scripts/neutron/recurring_task_kanboard.sh "New contacts"
+0 0 1 2-12/2 * $HOME/dotfiles/scripts/neutron/recurring_task_kanboard.sh "Change water filter"
+0 0 1 1,7 * $HOME/dotfiles/scripts/neutron/recurring_task_kanboard.sh "Change OneBlade blade"
+0 0 1 2,8 * $HOME/dotfiles/scripts/neutron/recurring_task_kanboard.sh "Clean coffee machine"
+0 0 1 5 * $HOME/dotfiles/scripts/neutron/recurring_task_kanboard.sh "Clean windows"
+0 0 1 11 * $HOME/dotfiles/scripts/neutron/recurring_task_kanboard.sh "Sharpen knives"
+0 0 1 12 * $HOME/dotfiles/scripts/neutron/recurring_task_kanboard.sh "Replace coffee machine filter"
