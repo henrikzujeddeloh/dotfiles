@@ -1,5 +1,6 @@
-# check every 10 minutes that RAID array is healthy 
+# check every 10 minutes that RAID array is healthy and no SMART errors
 */10 * * * * $HOME/dotfiles/scripts/neutron/check_array.sh
+*/10 * * * * $HOME/dotfiles/scripts/neutron/check_smart.sh
 
 # trigger daily Kanboard background tasks
 0 0 * * * curl -sSf -o /dev/null https://kanboard.henrikz.net/\?controller\=CronjobController\&action\=run\&token\=6f6bc3797e6e222a5c056a0754edcfec30e9aaeca53661f6f223924acbeb
