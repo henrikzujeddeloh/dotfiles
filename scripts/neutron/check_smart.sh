@@ -23,7 +23,7 @@ drives=$(lsblk -d -o NAME | grep -E '^sd|^nvme')
 for drive in $drives; do
 
     # Run SMART status check
-    sudo smartctl -H "/dev/$drive" 
+    sudo smartctl -H "/dev/$drive" -q silent
     status=$?
 
     # Detailed bit-level analysis
