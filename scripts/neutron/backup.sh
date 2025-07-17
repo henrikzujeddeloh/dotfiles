@@ -9,7 +9,7 @@ DATE=$(date +%Y%m%d)
 
 output="neutron backup $(date +%d-%m-%Y)"$'\n'
 
-output+="$(sudo borg create --stats $REPO::$DATE /home/ /etc/ 2>&1)"$'\n' || { curl -sSf -o /dev/null "http://gotify.lan/message?token=$GOTIFY_APP_TOKEN" -F "title=neutron backup failed" -F "message=$output" -F "priority=5"; exit 1; }
+output+="$(sudo borg create --stats --compression zstd,6 $REPO::$DATE /home/ /etc/ 2>&1)"$'\n' || { curl -sSf -o /dev/null "http://gotify.lan/message?token=$GOTIFY_APP_TOKEN" -F "title=neutron backup failed" -F "message=$output" -F "priority=5"; exit 1; }
 
 output+="$(sudo borg prune --stats --keep-daily 7 --keep-weekly 4 --keep-monthly 12 $REPO 2>&1)"$'\n' || { curl -sSf -o /dev/null "http://gotify.lan/message?token=$GOTIFY_APP_TOKEN" -F "title=neutron backup failed" -F "message=$output" -F "priority=5"; exit 1; }
 
