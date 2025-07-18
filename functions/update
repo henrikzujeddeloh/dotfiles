@@ -1,11 +1,13 @@
-#!/bin/bash
+#!/usr/bin/env bash
+#
+# function to run device-specific update script
 
 # reads input argument
 device="$1"
 
 # if no argument is passed, read device name as hostname
 if [ -z $device ]; then
-    device=$(hostname)
+    device=$HOSTNAME
 fi
 
 # function to run the update script
@@ -19,10 +21,10 @@ run_update_script() {
     fi
 
     echo "Running $device_name update..."
-    /bin/bash "$script_path"
+    "$script_path"
     
     if [ $? -eq 0 ]; then
-        echo "[SUCCESS] $device_name update completed successfully."
+        echo "[SUCCESS] $device_name update completed."
     else
         echo "[ERROR] $device_name update failed."
     fi

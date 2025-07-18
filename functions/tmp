@@ -1,6 +1,13 @@
-#!/bin/bash
+#!/usr/bin/env bash
+#
+# open tmp.md
 
-FOLDER="$CLOUD/Second-Brain"
-FILE="${FOLDER}/tmp.md"
+tmp_file="$CLOUD/Second-Brain/tmp.md"
 
-nvim "${FILE}"
+# check that tmp.md exists
+if [ ! -f "$tmp_file" ]; then
+    echo "[ERROR] $tmp_file does not exist."
+    exit 1
+fi
+
+nvim "$tmp_file"

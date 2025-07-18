@@ -1,26 +1,40 @@
-#!/bin/bash
+#!/usr/bin/env bash
+#
+# function to browse borg backups in finder
 
-device=$(hostname)
+# reads input argument
+device_backup="$1"
 
-if [ $device = "photon" ]; then
+# if no argument is passed, read device name as hostname
+if [ -z $device_backup ]; then
+    device_backup=$HOSTNAME
+    echo "No specific device backup specified. Mounting $device_backup backup."
+fi
 
-    source $HOME/dotfiles/scripts/photon/.env
+# check that its a computer with GUI
+if [ "$(device)" = "laptop" ]; then
 
-    SERVER=henrik@neutron.lan
-    REPO=$PATH_TO_BACKUP/Backup/photon
-    MOUNTPOINT=/tmp/browse_backup
+    repo=$BACKUP_DIR/$device_backup
 
-    mkdir -p $MOUNTPOINT
+    # create tmp mountpoint
+    mountpoint=/tmp/browse_backup
+    mkdir -p $mountpoint
 
-    sudo borg mount -o allow_other $SERVER:$REPO $MOUNTPOINT
+    # mount backup
+    echo "mounting $BACKUP_SERVER:$repo to $mountpoint."
+    sudo borg mount -o allow_other $BACKUP_SERVER:$repo $mountpoint
 
-    open $MOUNTPOINT
+    if [ "$(uname)" = "Darwin" ]; then
+        # open mounted backup in finder
+        echo "opening in finder."
+        open $mountpoint
+    fi
 
     # Wait for user confirmation to unmount
     while true; do
-        read -p "Press 'y' to unmount the backup folder: " response
+        read -p "Enter 'y' to unmount the backup folder: " response
         if [[ "$response" == "y" ]]; then
-            sudo borg umount $MOUNTPOINT
+            sudo borg umount $mountpoint
             echo "Backup unmounted."
             break
         else
@@ -29,6 +43,9 @@ if [ $device = "photon" ]; then
     done
 
     # Clean up the temporary directory
-    rm -r $MOUNTPOINT
+    rm -r $mountpoint
 
+else
+    echo "[ERROR] This computer does not have a GUI to browse backups!"
+    exit 1
 fi

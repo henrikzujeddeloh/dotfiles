@@ -1,11 +1,13 @@
-#!/bin/bash
+#!/usr/bin/env bash
+#
+# function to run device-specific backup script
 
 # reads input argument
 device="$1"
 
 # if no argument is passed, read device name as hostname
 if [ -z $device ]; then
-    device=$(hostname)
+    device=$HOSTNAME
 fi
 
 # function to run the backup script
@@ -19,10 +21,10 @@ run_backup_script() {
     fi
 
     echo "Running $device_name backup..."
-    /bin/bash "$script_path"
+    "$script_path"
     
     if [ $? -eq 0 ]; then
-        echo "[SUCCESS] $device_name backup completed successfully."
+        echo "[SUCCESS] $device_name backup completed."
     else
         echo "[ERROR] $device_name backup failed."
     fi
