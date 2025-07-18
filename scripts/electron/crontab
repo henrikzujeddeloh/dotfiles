@@ -1,0 +1,4 @@
+ZPROFILE=/home/henrik/.zprofile
+CRON_SCRIPTS=/home/henrik/dotfiles/scripts/electron
+
+0 0 * * * . "$ZPROFILE"; $CRON_SCRIPTS/backup.sh
