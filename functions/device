@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+#
+# returns the current device type
+
+case $HOSTNAME in
+    "photon")
+    echo "laptop";;
+
+    "neutron" | "electron" | "proton")
+    echo "server";;
+    
+    *)
+    echo "unknown";;
+esac
