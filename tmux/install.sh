@@ -3,7 +3,7 @@
 # install tmux and config
 
 # check if tmux is installed
-if [ ! which tmux &> /dev/null ]; then
+if ! [ -x "$(command -v tmux)" ]; then
     echo "tmux is not installed. Installing..."
     if [[ $(uname) == "Linux" ]]; then
         sudo apt install tmux

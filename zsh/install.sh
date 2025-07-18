@@ -5,7 +5,7 @@
 set -e
 
 # check if zsh is installed
-if [ ! which zsh &> /dev/null ]; then
+if ! [ -x "$(command -v zsh)" ]; then
     echo "zsh is not installed. Installing..."
     if [[ $(uname) == "Linux" ]]; then
         sudo apt install zsh

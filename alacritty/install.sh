@@ -3,7 +3,7 @@
 # install alacritty and config
 
 # check if alacritty is installed
-if [ ! which alacritty &> /dev/null ]; then
+if ! [ -x "$(command -v alacritty)" ]; then
     echo "alacritty is not installed. Installing..."
     if [[ $(uname) == "Linux" ]]; then
         sudo apt install alacritty

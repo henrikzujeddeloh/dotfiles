@@ -3,7 +3,7 @@
 # install fastfetch and config
 
 # check if fastfetch is installed
-if [ ! which fastfetch &> /dev/null ]; then
+if ! [ -x "$(command -v fastfetch)" ]; then
     echo "fastfetch is not installed. Installing..."
     if [[ $(uname) == "Linux" ]]; then
         sudo apt install fastfetch
