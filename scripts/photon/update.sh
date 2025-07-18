@@ -1,8 +1,6 @@
-#!/bin/bash
-
-# update omz
-echo "updating omz"
-$ZSH/tools/upgrade.sh
+#!/usr/bin/env bash
+#
+# update photon
 
 # update brew repos
 echo "updating brew repositories"
