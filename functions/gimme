@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+#
+# install particular program and corresponding config
+
+# check if input argument is given
+if [ -z $1 ]; then
+    echo "[ERROR] Please speicify which program from dotfiles to install."
+    exit 1
+fi
+
+# check if program exists in dotfiles
+if [ -d "$DOTFILES/$1" ]; then
+    # run corresponding install script
+    "$DOTFILES/$1/install.sh"
+else 
+    echo "[ERROR] Configuration for $1 does not exist in dotfiles."
+    exit 1
+fi
