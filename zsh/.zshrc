@@ -1,70 +1,42 @@
-# Directories
-export DOTFILES="$HOME/dotfiles"
-export SCRIPTS="$DOTFILES/scripts"
-export FUNCTIONS="$DOTFILES/functions"
-export PROJECTS="$HOME/projects"
-export CLOUD="$HOME/Cloud"
-export CONFIGS="$HOME/.config"
+# zsh settings
 
-# path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+# load aliaes
+source "$DOTFILES/zsh/aliases.zsh"
 
-# set ZSH theme
-ZSH_THEME="robbyrussell"
+# load modules
+zmodload zsh/complist
+autoload -U compinit && compinit
+autoload -U colors && colors
 
-# disables compatibility fix prompt (relevant for macOS)
-ZSH_DISABLE_COMPFIX=true
+# cmp opts
+zstyle ':completion:*' menu select # tab opens cmp menu
+zstyle ':completion:*' special-dirs true # force . and .. to show in cmp menu
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS} ma=0\;33 # colorize cmp menu
+zstyle ':completion:*' file-list true # more detailed list
+zstyle ':completion:*' squeeze-slashes false # explicit disable to allow /*/ expansion
 
-# disable bi-weekly auto-update checks.
-DISABLE_AUTO_UPDATE=true
+# main opts
+setopt append_history inc_append_history share_history # better history
+# on exit, history appends rather than overwrites; history is appended as soon as cmds executed; history shared across sessions
+setopt auto_menu menu_complete # autocmp first menu match
+setopt auto_param_slash # when a dir is completed, add a / instead of a trailing space
+setopt no_case_glob no_case_match # make cmp case insensitive
+setopt globdots # include dotfiles
+setopt extended_glob # match ~ # ^
+stty stop undef # disable accidental ctrl s
 
-# automatically update without prompting.
-DISABLE_UPDATE_PROMPT=true
+# history opts
+HISTSIZE=1000000
+SAVEHIST=1000000
+HISTFILE="$XDG_CACHE_HOME/zsh_history" # move histfile to cache
+HISTCONTROL=ignoreboth # consecutive duplicates & commands starting with space are not saved
 
-# TAB suggest hidden files/directories
-setopt globdots
+# set up prompt
+setopt PROMPT_SUBST
+PROMPT="%K{#2E3440}%F{#E5E9F0}$(date +%_I:%M) %K{#3b4252}%F{#ECEFF4} %n %K{#4c566a} %~ %f%k ❯ "
 
-### LOAD PLUGINS
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(git sudo dirhistory aliases zsh-autosuggestions zsh-syntax-highlighting fzf)
+# load plugins
+source "$XDG_DATA_HOME/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "$XDG_DATA_HOME/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
-source $ZSH/oh-my-zsh.sh
-
-# Add to PATH
-path=(
-    $path                           # Keep existing PATH entries
-    $FUNCTIONS
-    $HOME/.local/bin
-    /usr/local/bin
-)
-# Remove duplicate entries and non-existent directories
-typeset -U path
-path=($^path(N-/))
-
-export PATH
-
-
-# makes vim default editor and viewer
-set -o vi # use vim in terminal
-export VISUAL=nvim
-export EDITOR=nvim
-
-export BROWSER="firefox"
-
-### custom keybinds
-bindkey -s '^O' 'source $FUNCTIONS/cd_with_fzf^M'
-bindkey '^J' autosuggest-accept
-
-# CTRL-T: fzf files
-# CTRL-R: fzf command history
-
-### custom aliases
-. $DOTFILES/zsh/aliases.zsh
-
-### Display hostname on login
-echo $(hostname)
-if [ "$(hostname)" = "E020-NB003" ]; then
-    export http_proxy=http://www-int2.dkfz-heidelberg.de:3128
-    export https_proxy=http://www-int2.dkfz-heidelberg.de:3128
-fi
+echo $HOSTNAME
