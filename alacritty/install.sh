@@ -4,7 +4,7 @@
 
 # check if alacritty is installed
 if [ ! which alacritty &> /dev/null ]; then
-    echo "zsh is not installed. Installing..."
+    echo "alacritty is not installed. Installing..."
     if [[ $(uname) == "Linux" ]]; then
         sudo apt install alacritty
     elif [[ $(uname) == "Darwin" ]]; then
