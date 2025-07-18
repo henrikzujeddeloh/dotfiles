@@ -1,7 +1,8 @@
 # zsh settings
 
-# load aliaes
+# load aliaes and keybinds
 source "$DOTFILES/zsh/aliases.zsh"
+source "$DOTFILES/zsh/keybinds.zsh"
 
 # load modules
 zmodload zsh/complist
@@ -33,10 +34,9 @@ HISTCONTROL=ignoreboth # consecutive duplicates & commands starting with space a
 
 # set up prompt
 setopt PROMPT_SUBST
-PROMPT="%K{#2E3440}%F{#E5E9F0}$(date +%_I:%M) %K{#3b4252}%F{#ECEFF4} %n %K{#4c566a} %~ %f%k ❯ "
+PROMPT="%K{#2E3440}%F{#E5E9F0}%T %K{#3b4252}%F{#ECEFF4} %M %K{#4c566a} %~ %f%k -> "
+RPROMPT="%?"
 
 # load plugins
 source "$XDG_DATA_HOME/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source "$XDG_DATA_HOME/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-
-echo $HOSTNAME
