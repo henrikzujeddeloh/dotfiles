@@ -28,6 +28,7 @@ export BACKUP_SERVER="henrik@neutron.lan"
 export BACKUP_DIR="/srv/data/Backup"
 export GOTIFY_URL="http://gotify.lan"
 export GOTIFY_API="AHgbe0nz1_eLwOG"
+export KANBOARD_API="179d878a17e4e95b01e38dd180ad4788f650d483693ec768ba1c22d44d7d"
 
 # variables for neutron
 if [ "$HOSTNAME" = "neutron" ]; then
