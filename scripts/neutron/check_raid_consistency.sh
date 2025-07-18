@@ -2,14 +2,12 @@
 
 start_time=$(date -u +%s%3N)
 
-GOTIFY_APP_TOKEN="AHgbe0nz1_eLwOG"
-
 RAID_DEVICE="md0"
 
 output=""
 output+="$(sudo /usr/share/mdadm/checkarray --all --idle --quiet 2>&1)"
 if [ $? -ne 0 ]; then
-    curl -sSf -o /dev/null "http://gotify.lan/message?token=$GOTIFY_APP_TOKEN" -F "title=RAID Consistency Check Alert" -F "message=$output" -F "priority=10"
+    curl -sSf -o /dev/null "$GOTIFY_URL/message?token=$GOTIFY_API" -F "title=RAID Consistency Check Alert" -F "message=$output" -F "priority=10"
     exit 1;
 fi
 
@@ -36,4 +34,4 @@ end_time=$(date -u +%s%3N)
 duration=$((end_time - start_time))
 output+=$(printf "Total duration: %02dh:%02dm:%02ds\n" $((duration/3600000)) $((duration%3600000/60000)) $((duration%60000/1000)))
 
-curl -sSf -o /dev/null "http://gotify.lan/message?token=$GOTIFY_APP_TOKEN" -F "title=RAID Consistency Check Complete" -F "message=$output" -F "priority=1"
+curl -sSf -o /dev/null "$GOTIFY_URL/message?token=$GOTIFY_API" -F "title=RAID Consistency Check Complete" -F "message=$output" -F "priority=1"

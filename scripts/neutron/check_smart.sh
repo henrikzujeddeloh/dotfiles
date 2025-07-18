@@ -1,14 +1,10 @@
 #!/bin/bash
 
-# Gotify configuration
-GOTIFY_URL="http://gotify.lan/"
-GOTIFY_TOKEN="AHgbe0nz1_eLwOG"
-
 # Function to send Gotify notification
 send_notification() {
     local message="$1"
     curl -X POST \
-        "$GOTIFY_URL/message?$GOTIFY_TOKEN" \
+        "$GOTIFY_URL/message?$GOTIFY_API" \
         -F "message=$message" \
         -F "title=SMART Health Alert"
 }

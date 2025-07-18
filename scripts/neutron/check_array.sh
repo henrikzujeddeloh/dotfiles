@@ -1,19 +1,16 @@
 #!/bin/bash
 
-# Gotify configuration
-GOTIFY_APP_TOKEN="AHgbe0nz1_eLwOG"
-
 # RAID device to monitor
-RAID_DEVICE="/dev/md0"
+raid_device="/dev/md0"
 
 # Function to send Gotify notification
 send_notification() {
     local message="$1"
-    curl -sSf -o /dev/null "http://gotify.lan/message?token=$GOTIFY_APP_TOKEN" -F "message=$message" -F "title=Disk Array Alert" -F "priority=10"
+    curl -sSf -o /dev/null "$GOTIFY_URL/message?token=$GOTIFY_API" -F "message=$message" -F "title=Disk Array Alert" -F "priority=10"
 }
 
 # Check RAID status using mdadm exit codes
-sudo mdadm --detail --test "$RAID_DEVICE" > /dev/null
+sudo mdadm --detail --test "$raid_device" > /dev/null
 status=$?
 
 case $status in
