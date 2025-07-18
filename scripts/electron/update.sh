@@ -7,10 +7,6 @@ sudo apt upgrade
 sudo apt autoclean
 sudo apt autoremove
 
-# update omz
-echo "updating omz"
-"$ZSH/tools/upgrade.sh"
-
 # loop through docker contianers, pull images and restart container
 echo "updating docker containers"
 container_list="$HOME/dotfiles/scripts/electron/containers.txt"

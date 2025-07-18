@@ -7,10 +7,6 @@ sudo apt upgrade
 sudo apt autoclean
 sudo apt autoremove
 
-# update omz
-echo "updating omz"
-"$ZSH/tools/upgrade.sh"
-
 # pull docker images and restart containers
 echo "updating docker containers"
 container_list="$HOME/dotfiles/scripts/neutron/containers.txt"

@@ -7,10 +7,6 @@ sudo apt upgrade
 sudo apt autoclean
 sudo apt autoremove
 
-# update omz
-echo "updating omz"
-"$ZSH/tools/upgrade.sh"
-
 # loop through active docker containers, pull new image and restart
 echo "updating docker containers"
 container_list="$HOME/dotfiles/scripts/proton/containers.txt"
