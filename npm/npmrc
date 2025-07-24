@@ -1,0 +1,4 @@
+prefix=/home/h030h/.local/share/npm
+cache=/home/h030h/.cache/npm
+init-module=/home/h030h/.config/npm/config/npm-init.js
+logs-dir=/home/h030h/.local/state/npm/logs
