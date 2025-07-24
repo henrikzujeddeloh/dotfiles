@@ -10,9 +10,33 @@ export BROWSER="firefox"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_STATE_HOME="$HOME/.local/state"
 
 # bootstrap .zshrc to XDG
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+
+# rust/cargo
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
+
+# docker
+export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
+
+# go
+export GOPATH="$XDG_DATA_HOME/go"
+export GOMODCACHE="$XDG_CACHE_HOME/go/mod"
+
+# npm
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+export NPM_DIR="$XDG_DATA_HOME/nvm"
+
+# python
+export PYENV_ROOT="$XDG_DATA_HOME/pyenv"
+export PYTHON_HISTORY="$XDG_STATE_HOME/python_history"
+export PYTHONPYCACHEPREFIX="$XDG_CACHE_HOME/python"
+export PYTHONUSERBASE="$XDG_DATA_HOME/python"
+
+# unison
+export UNISON="$XDG_DATA_HOME/unison"
 
 # other directories
 export DOTFILES="$HOME/dotfiles"
