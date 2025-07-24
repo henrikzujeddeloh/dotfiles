@@ -2,7 +2,7 @@ alias e="exit"
 alias c="clear"
 alias h="hostname"
 alias n="nvim ."
-alias l="ls -la"
+alias l="ls -lah"
 alias f="fastfetch"
 
 alias sb='cd $CLOUD/Second-Brain/ && nvim dashboard.md'

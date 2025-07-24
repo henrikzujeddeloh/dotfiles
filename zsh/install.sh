@@ -44,7 +44,7 @@ for ((idx=0; idx<${#plugins[@]}; ++idx))
 do
     if [ ! -d "$XDG_DATA_HOME/zsh/plugins/${plugins[idx]}/" ]; then
         echo "Installing ${plugins[idx]} plugin"
-        git clone git@github.com:${plugin_repos[idx]} "$XDG_DATA_HOME/zsh/plugins/${plugins[idx]}"
+        git clone git@github.com:${plugin_repos[idx]} "$XDG_DATA_HOME/zsh/plugins/${plugins[idx]}" || git clone https://github.com/${plugin_repos[idx]} "$XDG_DATA_HOME/zsh/plugins/${plugins[idx]}"
     fi
 done
 
