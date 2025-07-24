@@ -17,6 +17,7 @@ export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
 # rust/cargo
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 
 # docker
 export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
@@ -61,3 +62,6 @@ fi
 
 # add custom functions to PATH
 export PATH="$FUNCTIONS:$PATH"
+
+# add cargo binaries to PATH
+export PATH="$XDG_DATA_HOME/cargo/bin:$PATH"
