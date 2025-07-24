@@ -16,6 +16,9 @@ else
     echo "Unknown OS!"
 fi
 
+# git aliases
+alias gst="git status"
+
 # tmux aliases
 alias ta='tmux attach'
 alias td='tmux detach'
