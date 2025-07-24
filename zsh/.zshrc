@@ -40,3 +40,8 @@ RPROMPT="%?"
 # load plugins
 source "$XDG_DATA_HOME/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source "$XDG_DATA_HOME/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+if [[ $HOSTNAME == "E020-NB003" ]]; then
+    export http_proxy="http://www-int2.inet.dkfz-heidelberg.de:3128"
+    export https_proxy="http://www-int2.inet.dkfz-heidelberg.de:3128"
+fi
+
