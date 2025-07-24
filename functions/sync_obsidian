@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Sync Nexcloud Second-Brain Obsidian vault with iCloud vault
 

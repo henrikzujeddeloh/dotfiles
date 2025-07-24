@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # RAID device to monitor
 raid_device="/dev/md0"

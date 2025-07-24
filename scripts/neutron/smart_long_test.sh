@@ -1,6 +1,4 @@
-#!/bin/bash
-
-GOTIFY_API="AHgbe0nz1_eLwOG"
+#!/usr/bin/env bash
 
 # Drives to test
 DISKS=("/dev/sda" "/dev/sdb" "/dev/nvme0")

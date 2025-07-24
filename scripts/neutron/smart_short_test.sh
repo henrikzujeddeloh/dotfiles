@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Drives to test
 DISKS=("/dev/sda" "/dev/sdb" "/dev/nvme0")
