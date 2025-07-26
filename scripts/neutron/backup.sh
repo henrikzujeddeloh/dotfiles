@@ -20,4 +20,9 @@ end_time=$(date -u +%s%3N)
 duration=$((end_time - start_time))
 output+=$(printf "Total duration: %02dh:%02dm:%02ds\n" $((duration/3600000)) $((duration%3600000/60000)) $((duration%60000/1000)))
 
-curl -sSf -o /dev/null "$GOTIFY_URL/message?token=$GOTIFY_API" -F "title=neutron backup successful" -F "message=$output" -F "priority=1"
+# curl -sSf -o /dev/null "$GOTIFY_URL/message?token=$GOTIFY_API" -F "title=neutron backup successful" -F "message=$output" -F "priority=1"
+curl -sSf -o /dev/null --request POST "$INFLUXDB_URL/api/v2/write?org=personal&bucket=bucket&precision=ns" \
+  --header "Authorization: Token $INFLUXDB_API" \
+  --header "Content-Type: text/plain; charset=utf-8" \
+  --header "Accept: application/json" \
+  --data-binary "backup_duration,host=neutron dur=$duration"
