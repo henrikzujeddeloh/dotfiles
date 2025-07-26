@@ -6,6 +6,10 @@ alias l="ls -lah"
 alias f="fastfetch"
 
 alias sb='cd $CLOUD/Second-Brain/ && nvim dashboard.md'
+alias xdgconfig="cd $XDG_CONFIG_HOME"
+alias xdgdcache="cd $XDG_CACHE_HOME"
+alias xdgdata="cd $XDG_DATA_HOME"
+alias xdgstate="cd $XDG_STATE_HOME"
 
 # define "fd" command based on operating system
 if [[ $(uname) == "Linux" ]]; then
