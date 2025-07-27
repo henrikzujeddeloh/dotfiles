@@ -1,4 +1,4 @@
-ZPROFILE=/home/henrik/.zprofile
-CRON_SCRIPTS=/home/henrik/dotfiles/scripts/proton
+ZPROFILE=/home/pi/.zprofile
+CRON_SCRIPTS=/home/pi/dotfiles/scripts/proton
 
 0 0 * * * . "$ZPROFILE"; $CRON_SCRIPTS/backup.sh
