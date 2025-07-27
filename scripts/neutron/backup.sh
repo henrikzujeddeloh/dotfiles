@@ -25,4 +25,4 @@ curl -sSf -o /dev/null --request POST "$INFLUXDB_URL/api/v2/write?org=personal&b
   --header "Authorization: Token $INFLUXDB_API" \
   --header "Content-Type: text/plain; charset=utf-8" \
   --header "Accept: application/json" \
-  --data-binary "backup_duration,host=neutron dur=$duration"
+  --data-binary "backup_duration,host=$HOSTNAME dur=$duration"
