@@ -12,7 +12,8 @@ output+="$(sudo borg create --stats --compression zstd,6 $BACKUP_SERVER:$repo::$
 output+="$(sudo borg prune --stats --keep-daily 7 --keep-weekly 4 --keep-monthly 12 $BACKUP_SERVER:$repo 2>&1)"$'\n' || { curl -sSf -o /dev/null "$GOTIFY_URL/message?token=$GOTIFY_API" -F "title=proton backup failed" -F "message=$output" -F "priority=5"; exit 1; }
 
 if [[ $(date +%d) -eq 01 ]]; then
-    output+="$(sudo borg compact $BACKUP_SERVER:$repo 2>&1)"$'\n' || { curl -sSf -o /dev/null "$GOTIFY_URL/message?token=$GOTIFY_API" -F "title=proton backup failed" -F "message=$output" -F "priority=5"; exit 1; }
+    # not available on this borg version yet
+    # output+="$(sudo borg compact $BACKUP_SERVER:$repo 2>&1)"$'\n' || { curl -sSf -o /dev/null "$GOTIFY_URL/message?token=$GOTIFY_API" -F "title=proton backup failed" -F "message=$output" -F "priority=5"; exit 1; }
     output+="$(sudo borg check --verify-data $BACKUP_SERVER:$repo 2>&1)"$'\n' || { curl -sSf -o /dev/null "$GOTIFY_URL/message?token=$GOTIFY_API" -F "title=proton backup failed" -F "message=$output" -F "priority=5"; exit 1; }
 fi
 

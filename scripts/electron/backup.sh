@@ -13,7 +13,7 @@ output+="$(sudo borg prune --stats --keep-daily 7 --keep-weekly 4 --keep-monthly
 
 if [[ $(date +%d) -eq 01 ]]; then
     output+="$(sudo borg compact $BACKUP_SERVER:$repo 2>&1)"$'\n' || { curl -sSf -o /dev/null "$GOTIFY_URL/message?token=$GOTIFY_API" -F "title=electron backup failed" -F "message=$output" -F "priority=5"; exit 1; }
-    output+="$(sudo borg check --verify-data $BACUKP_SERVER:$repo 2>&1)"$'\n' || { curl -sSf -o /dev/null "$GOTIFY_URL/message?token=$GOTIFY_API" -F "title=electron backup failed" -F "message=$output" -F "priority=5"; exit 1; }
+    output+="$(sudo borg check --verify-data $BACKUP_SERVER:$repo 2>&1)"$'\n' || { curl -sSf -o /dev/null "$GOTIFY_URL/message?token=$GOTIFY_API" -F "title=electron backup failed" -F "message=$output" -F "priority=5"; exit 1; }
 fi
 
 end_time=$(date -u +%s%3N)
