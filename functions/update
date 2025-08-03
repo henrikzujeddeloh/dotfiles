@@ -32,7 +32,7 @@ run_update_script() {
 
 # run corresponding update script
 if [ $device = "proton" ] || [ $device = "raspberrypi" ]; then
-    run_update_script "$SCRIPTS/update.sh" "proton"
+    run_update_script "$HOME/dotfiles/scripts/proton/update.sh" "proton"
 
 elif [ $device = "electron" ]; then
     run_update_script "$SCRIPTS/update.sh" "electron"
