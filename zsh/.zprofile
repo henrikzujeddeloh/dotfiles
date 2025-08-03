@@ -2,6 +2,9 @@
 #
 # set env variables (runs before .zshrc)
 
+# set hostname
+export HOSTNAME="$(hostname)"
+
 # default programs
 export EDITOR="nvim"
 export BROWSER="firefox"
@@ -44,9 +47,6 @@ export DOTFILES="$HOME/dotfiles"
 export FUNCTIONS="$DOTFILES/functions"
 export SCRIPTS="$DOTFILES/scripts/$HOSTNAME"
 export CLOUD="$HOME/Cloud"
-
-# set hostname
-export HOSTNAME="$(hostname)"
 
 # other useful variables
 export BACKUP_SERVER="henrik@neutron.lan"

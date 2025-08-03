@@ -32,16 +32,16 @@ run_update_script() {
 
 # run corresponding update script
 if [ $device = "proton" ] || [ $device = "raspberrypi" ]; then
-    run_update_script "$SCRIPTS/proton/update.sh" "proton"
+    run_update_script "$SCRIPTS/update.sh" "proton"
 
 elif [ $device = "electron" ]; then
-    run_update_script "$SCRIPTS/electron/update.sh" "electron"
+    run_update_script "$SCRIPTS/update.sh" "electron"
 
 elif [ $device = "photon" ]; then
-    run_update_script "$SCRIPTS/photon/update.sh" "photon"
+    run_update_script "$SCRIPTS/update.sh" "photon"
 
 elif [ $device = "neutron" ]; then
-    run_update_script "$SCRIPTS/neutron/update.sh" "neutron"
+    run_update_script "$SCRIPTS/update.sh" "neutron"
 
 else
     echo "[ERROR] $device does not have a corresponding update script."
