@@ -39,15 +39,18 @@ perform_backup() {
     
     # Mount disk
     sudo mount "/dev/disk/by-uuid/${uuid}" "$mount_point" || { echo "[ERROR] disk with uuid $uuid could not be mounted at $mount_point"; sudo umount "$mount_point";  exit 1; }
+
+    # Get disk space info
+    get_disk_space_info "$mount_point"
     
     # Perform backup
-    borg create --stats --verbose --progress --list "$mount_point/$backup_name::$archive" "$backup_path" || { echo "[ERROR] could not create backup $archive for $backup_path"; sudo umount "$mount_point"; exit 1; }
+    borg create --stats --progress "$mount_point/$backup_name::$archive" $backup_path || { echo "[ERROR] could not create backup $archive for $backup_path"; sudo umount "$mount_point"; exit 1; }
     
-    borg prune --stats --verbose --list --keep-daily 7 --keep-weekly 4 --keep-monthly 12 "$mount_point/$backup_name" || { echo "[ERROR] could not prune backups"; sudo umount "$mount_point";  exit 1; }
+    borg prune --stats --list --progress --keep-monthly 24 "$mount_point/$backup_name" || { echo "[ERROR] could not prune backups"; sudo umount "$mount_point";  exit 1; }
 
-    borg compact "$mount_point/$backup_name" || { echo "[ERROR] could not compact backups"; sudo umount "$mount_point"; exit 1; }
+    borg compact --progress "$mount_point/$backup_name" || { echo "[ERROR] could not compact backups"; sudo umount "$mount_point"; exit 1; }
 
-    borg check --verify-data "$mount_point/$backup_name" || { echo "[ERROR] could not check backups"; sudo umount "$mount_point"; exit 1; }
+    borg check --verify-data --progress "$mount_point/$backup_name" || { echo "[ERROR] could not check backups"; sudo umount "$mount_point"; exit 1; }
     
     # Get disk space info
     get_disk_space_info "$mount_point"
