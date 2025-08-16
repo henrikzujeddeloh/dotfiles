@@ -7,7 +7,7 @@ repo=$BACKUP_DIR/photon
 archive=$(date +%Y%m%d-%H%M)
 
 # create borg backup
-sudo borg create --progress --stats --compression zstd,6 $BACKUP_SERVER:$repo::$archive /Users/henrikzujeddeloh/ --exclude '/Users/henrikzujeddeloh/Library/'
+sudo borg create --progress --stats --compression zstd,6 $BACKUP_SERVER:$repo::$archive /Users/henrikzujeddeloh/ --exclude '/Users/henrikzujeddeloh/Library/' --exclude '/Users/henrikzujeddeloh/Music/'
 
 # prune borg backup
 sudo borg prune --list --stats --keep-within=1d --keep-daily 7 --keep-weekly 4 --keep-monthly 12 $BACKUP_SERVER:$repo
